@@ -1,0 +1,12 @@
+{
+  "name": "bitterbooks-landing-page",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && cp script.js dist/script.js"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}
