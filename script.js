@@ -124,27 +124,27 @@ const englishCopy = {
   ".soyink-note p":
     "BitterINK products are made with plant-based soybean-oil <strong>SoyINK-certified ink</strong>.",
   ".faq-list details:nth-child(1) summary":
-    "<span>Q1</span> Is the bitter ink in this book safe?",
+    '<span class="faq-number">Q1</span><span class="faq-question-text">Is the bitter ink in this book safe?</span>',
   ".faq-list details:nth-child(1) p":
     "It uses plant-based SoyINK and Veranova’s premium bittering ingredient from the United Kingdom, and has completed children’s product safety testing.",
   ".faq-list details:nth-child(2) summary":
-    "<span>Q2</span> Is brief contact with the mouth okay?",
+    '<span class="faq-number">Q2</span><span class="faq-question-text">Is brief contact with the mouth okay?</span>',
   ".faq-list details:nth-child(2) p":
     "It is designed for brief sensory contact. It is not food, so use only a light touch with a fingertip or the tip of the tongue.",
   ".faq-list details:nth-child(3) summary":
-    "<span>Q3</span> Does the bitter taste spread through the book?",
+    '<span class="faq-number">Q3</span><span class="faq-question-text">Does the bitter taste spread through the book?</span>',
   ".faq-list details:nth-child(3) p":
     "It is printed only on selected scenes and fixed after drying. A faint taste may be noticed nearby depending on the paper.",
   ".faq-list details:nth-child(4) summary":
-    "<span>Q4</span> How do we use the experience stickers?",
+    '<span class="faq-number">Q4</span><span class="faq-question-text">How do we use the experience stickers?</span>',
   ".faq-list details:nth-child(4) p":
     "When several children share the book, place an included sticker on the scene and let each child experience one hygienically.",
   ".faq-list details:nth-child(5) summary":
-    "<span>Q5</span> What age is it recommended for?",
+    '<span class="faq-number">Q5</span><span class="faq-question-text">What age is it recommended for?</span>',
   ".faq-list details:nth-child(5) p":
     "It is recommended for ages three and older. The experience is best shared lightly with a caregiver.",
   ".faq-list details:nth-child(6) summary":
-    "<span>Q6</span> Does the bitter taste last after repeated use?",
+    '<span class="faq-number">Q6</span><span class="faq-question-text">Does the bitter taste last after repeated use?</span>',
   ".faq-list details:nth-child(6) p":
     "Moisture and friction can gradually weaken it. Use the included bitter-taste stickers when another experience is needed.",
   ".story-header .section-index": "03 / BITTER BOOKS SERIES",
@@ -265,27 +265,27 @@ const chineseCopy = {
   ".soyink-note p":
     "BitterINK 产品采用植物性大豆油制成的 <strong>SoyINK 认证油墨</strong>。",
   ".faq-list details:nth-child(1) summary":
-    "<span>Q1</span> 书中的苦味油墨安全吗？",
+    '<span class="faq-number">Q1</span><span class="faq-question-text">书中的苦味油墨安全吗？</span>',
   ".faq-list details:nth-child(1) p":
     "采用植物性 SoyINK 和英国 Veranova 的优质苦味原料，并已完成儿童产品安全检测。",
   ".faq-list details:nth-child(2) summary":
-    "<span>Q2</span> 短暂接触口腔也没问题吗？",
+    '<span class="faq-number">Q2</span><span class="faq-question-text">短暂接触口腔也没问题吗？</span>',
   ".faq-list details:nth-child(2) p":
     "产品按短暂感官体验设计，并非食品。请仅用指尖或舌尖轻轻体验。",
   ".faq-list details:nth-child(3) summary":
-    "<span>Q3</span> 苦味会扩散到整本书吗？",
+    '<span class="faq-number">Q3</span><span class="faq-question-text">苦味会扩散到整本书吗？</span>',
   ".faq-list details:nth-child(3) p":
     "只印在部分场景，干燥后会固定。根据纸张特性，邻近区域可能感受到轻微苦味。",
   ".faq-list details:nth-child(4) summary":
-    "<span>Q4</span> 体验贴纸怎么使用？",
+    '<span class="faq-number">Q4</span><span class="faq-question-text">体验贴纸怎么使用？</span>',
   ".faq-list details:nth-child(4) p":
     "多人共读时，请将附赠贴纸贴在相应场景，每次使用一张，更加卫生。",
   ".faq-list details:nth-child(5) summary":
-    "<span>Q5</span> 几岁开始适合使用？",
+    '<span class="faq-number">Q5</span><span class="faq-question-text">几岁开始适合使用？</span>',
   ".faq-list details:nth-child(5) p":
     "建议年龄为 3 岁以上。与家长一起阅读并轻轻体验，效果更好。",
   ".faq-list details:nth-child(6) summary":
-    "<span>Q6</span> 多次使用后苦味还会保留吗？",
+    '<span class="faq-number">Q6</span><span class="faq-question-text">多次使用后苦味还会保留吗？</span>',
   ".faq-list details:nth-child(6) p":
     "水分和摩擦会让苦味逐渐减弱。需要再次体验时，可使用随书附赠的苦味贴纸。",
   ".story-header .section-index": "03 / BITTER BOOKS 系列",
@@ -400,27 +400,27 @@ const japaneseCopy = {
   ".soyink-note p":
     "BitterINK 製品は植物性大豆油ベースの <strong>SoyINK 認証インク</strong>でつくられています。",
   ".faq-list details:nth-child(1) summary":
-    "<span>Q1</span> この本の苦味インクは安全ですか？",
+    '<span class="faq-number">Q1</span><span class="faq-question-text">この本の苦味インクは安全ですか？</span>',
   ".faq-list details:nth-child(1) p":
     "植物性 SoyINK と英国 Veranova のプレミアム苦味原料を使用し、子ども向け製品の安全試験を完了しています。",
   ".faq-list details:nth-child(2) summary":
-    "<span>Q2</span> 口に少し触れても大丈夫ですか？",
+    '<span class="faq-number">Q2</span><span class="faq-question-text">口に少し触れても大丈夫ですか？</span>',
   ".faq-list details:nth-child(2) p":
     "短時間の感覚体験を想定して設計されています。食品ではないため、指先や舌先で軽く体験してください。",
   ".faq-list details:nth-child(3) summary":
-    "<span>Q3</span> 苦味は本全体に広がりますか？",
+    '<span class="faq-number">Q3</span><span class="faq-question-text">苦味は本全体に広がりますか？</span>',
   ".faq-list details:nth-child(3) p":
     "一部の場面だけに印刷され、乾燥後に定着します。紙の特性により周辺でわずかな苦味を感じることがあります。",
   ".faq-list details:nth-child(4) summary":
-    "<span>Q4</span> 体験シールはどう使いますか？",
+    '<span class="faq-number">Q4</span><span class="faq-question-text">体験シールはどう使いますか？</span>',
   ".faq-list details:nth-child(4) p":
     "複数の子どもで読むときは、付属シールを該当場面に貼り、一枚ずつ衛生的に体験してください。",
   ".faq-list details:nth-child(5) summary":
-    "<span>Q5</span> 何歳から使えますか？",
+    '<span class="faq-number">Q5</span><span class="faq-question-text">何歳から使えますか？</span>',
   ".faq-list details:nth-child(5) p":
     "推奨年齢は 3 歳以上です。保護者と一緒に読み、軽く体験するとより効果的です。",
   ".faq-list details:nth-child(6) summary":
-    "<span>Q6</span> 繰り返し使っても苦味は残りますか？",
+    '<span class="faq-number">Q6</span><span class="faq-question-text">繰り返し使っても苦味は残りますか？</span>',
   ".faq-list details:nth-child(6) p":
     "水分や摩擦で苦味は少しずつ弱くなります。繰り返し体験するときは付属の苦味シールをご利用ください。",
   ".story-header .section-index": "03 / BITTER BOOKS シリーズ",
@@ -480,7 +480,7 @@ const languageSettings = {
   ko: {
     label: "한국어",
     flag: "./assets/flags/kr.svg",
-    title: "비터북스 | Bitter Books",
+    title: "비터북스(BitterBooks) | 감각으로 배우는 그림책",
     ariaLabel: "언어 변경",
   },
   en: {
