@@ -171,8 +171,8 @@ const englishCopy = {
   ".book-store": "Naver SmartStore <span aria-hidden=\"true\">↗</span>",
   ".buy-section .section-index": "04 / WHERE TO BUY",
   ".buy-section h2": "Meet Bitter Books<br />at your preferred online store.",
-  ".store-links a:nth-child(1) strong": "Buy Book One",
-  ".store-links a:nth-child(2) strong": "Buy Book Two",
+  ".store-links a:nth-child(1) strong": "Buy My Finger, Kong’s Toe",
+  ".store-links a:nth-child(2) strong": "Buy Teacher Inom",
   ".store-links a:nth-child(3) strong": "Official Bitter Books Store",
   ".social-intro .section-index": "05 / FOLLOW THE STORY",
   ".social-intro h2":
@@ -198,6 +198,11 @@ const englishCopy = {
   ".footer-brand p": "Books learned through the senses and grown through stories",
   ".footer-info > p:nth-child(1)": "KUNMUK Co., Ltd. · CEO Hyunmin Roh",
   ".footer-info > p:nth-child(2)": "Business registration No. 122-86-49985",
+  ".footer-info > p:nth-child(3)":
+    "E-commerce registration No. 2025-Yongin Giheung-02468",
+  ".footer-info > p:nth-child(4)": "Publisher registration No. 2025-000099",
+  ".footer-info address":
+    "Business address: 6F, C608-D68, 444 Dongbaekjukjeon-daero,<br />Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea",
 };
 
 const chineseCopy = {
@@ -308,8 +313,8 @@ const chineseCopy = {
   ".book-store": "Naver 智慧商店 <span aria-hidden=\"true\">↗</span>",
   ".buy-section .section-index": "04 / 购买渠道",
   ".buy-section h2": "在您常用的网上商店<br />遇见 Bitter Books。",
-  ".store-links a:nth-child(1) strong": "购买第一本书",
-  ".store-links a:nth-child(2) strong": "购买第二本书",
+  ".store-links a:nth-child(1) strong": "购买《我的手指，Kong的脚趾》",
+  ".store-links a:nth-child(2) strong": "购买《伊诺姆老师》",
   ".store-links a:nth-child(3) strong": "Bitter Books 官方商店",
   ".social-intro .section-index": "05 / 关注故事",
   ".social-intro h2": "第一时间了解<br />新书与故事的诞生过程。",
@@ -333,6 +338,10 @@ const chineseCopy = {
   ".footer-brand p": "用感官学习，在故事中成长的书",
   ".footer-info > p:nth-child(1)": "KUNMUK 株式会社 · 代表 卢贤敏",
   ".footer-info > p:nth-child(2)": "营业执照号码 122-86-49985",
+  ".footer-info > p:nth-child(3)": "通信销售业申报编号 2025-용인기흥-02468",
+  ".footer-info > p:nth-child(4)": "出版社登记编号 2025-000099",
+  ".footer-info address":
+    "营业地址：韩国京畿道龙仁市器兴区东柏竹田大路444，<br />6层 C608-D68号 JUNEVE（中洞）",
 };
 
 const japaneseCopy = {
@@ -443,8 +452,8 @@ const japaneseCopy = {
   ".book-store": "Naver スマートストア <span aria-hidden=\"true\">↗</span>",
   ".buy-section .section-index": "04 / 購入先",
   ".buy-section h2": "いつものオンラインストアで<br />Bitter Books に出会えます。",
-  ".store-links a:nth-child(1) strong": "1 冊目を購入",
-  ".store-links a:nth-child(2) strong": "2 冊目を購入",
+  ".store-links a:nth-child(1) strong": "『わたしの指、コンの足の指』を購入",
+  ".store-links a:nth-child(2) strong": "『イノム先生』を購入",
   ".store-links a:nth-child(3) strong": "Bitter Books 公式ストア",
   ".social-intro .section-index": "05 / 物語をフォロー",
   ".social-intro h2": "本が生まれる瞬間と<br />次の物語をいち早く。",
@@ -468,6 +477,10 @@ const japaneseCopy = {
   ".footer-brand p": "感覚で学び、物語で育つ本",
   ".footer-info > p:nth-child(1)": "株式会社 KUNMUK・代表 ノ・ヒョンミン",
   ".footer-info > p:nth-child(2)": "事業者登録番号 122-86-49985",
+  ".footer-info > p:nth-child(3)": "通信販売業届出番号 2025-용인기흥-02468",
+  ".footer-info > p:nth-child(4)": "出版社届出番号 2025-000099",
+  ".footer-info address":
+    "事業所住所：韓国 京畿道龍仁市器興区東柏竹田大路444、<br />6階 C608-D68号 JUNEVE（中洞）",
 };
 
 const languageCopies = {
