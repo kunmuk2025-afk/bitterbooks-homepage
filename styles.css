@@ -1519,8 +1519,7 @@ a {
 
 .footer-brand p,
 .footer-info p,
-.footer-info a,
-.footer-info address {
+.footer-info a {
   margin: 10px 0 0;
   font-size: 15px;
 }
@@ -1530,9 +1529,10 @@ a {
   text-align: right;
 }
 
-.footer-info address {
+.footer-info .footer-address {
   font-style: normal;
-  line-height: 1.6;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 .certificate-dialog {
@@ -2146,21 +2146,29 @@ a {
   .social-section,
   .collaboration-section {
     gap: 0;
+    padding-top: 52px;
+    padding-bottom: 52px;
   }
 
   .buy-section h2 {
-    margin-top: 28px;
+    margin-top: 22px;
   }
 
   .social-intro h2,
   .collaboration-intro h2 {
-    margin: 28px 0 18px;
+    margin: 22px 0 10px;
+  }
+
+  .social-intro > p:last-child,
+  .collaboration-intro > p:last-child {
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .store-links,
   .social-spotlight,
   .collaboration-content {
-    margin-top: 28px;
+    margin-top: 12px;
   }
 
   .site-footer {

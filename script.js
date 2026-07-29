@@ -201,8 +201,8 @@ const englishCopy = {
   ".footer-info > p:nth-child(3)":
     "E-commerce registration No. 2025-Yongin Giheung-02468",
   ".footer-info > p:nth-child(4)": "Publisher registration No. 2025-000099",
-  ".footer-info address":
-    "Business address: 6F, C608-D68, 444 Dongbaekjukjeon-daero,<br />Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea",
+  ".footer-info .footer-address":
+    "Business address: 6F, C608-D68, 444 Dongbaekjukjeon-daero, Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea",
 };
 
 const chineseCopy = {
@@ -340,8 +340,8 @@ const chineseCopy = {
   ".footer-info > p:nth-child(2)": "营业执照号码 122-86-49985",
   ".footer-info > p:nth-child(3)": "通信销售业申报编号 2025-용인기흥-02468",
   ".footer-info > p:nth-child(4)": "出版社登记编号 2025-000099",
-  ".footer-info address":
-    "营业地址：韩国京畿道龙仁市器兴区东柏竹田大路444，<br />6层 C608-D68号 JUNEVE（中洞）",
+  ".footer-info .footer-address":
+    "营业地址：韩国京畿道龙仁市器兴区东柏竹田大路444，6层 C608-D68号 JUNEVE（中洞）",
 };
 
 const japaneseCopy = {
@@ -479,8 +479,8 @@ const japaneseCopy = {
   ".footer-info > p:nth-child(2)": "事業者登録番号 122-86-49985",
   ".footer-info > p:nth-child(3)": "通信販売業届出番号 2025-용인기흥-02468",
   ".footer-info > p:nth-child(4)": "出版社届出番号 2025-000099",
-  ".footer-info address":
-    "事業所住所：韓国 京畿道龍仁市器興区東柏竹田大路444、<br />6階 C608-D68号 JUNEVE（中洞）",
+  ".footer-info .footer-address":
+    "事業所住所：韓国 京畿道龍仁市器興区東柏竹田大路444、6階 C608-D68号 JUNEVE（中洞）",
 };
 
 const languageCopies = {
