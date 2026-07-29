@@ -2,13 +2,15 @@ const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
 function setMenu(open) {
+  if (!menuButton || !nav) return;
   menuButton.setAttribute("aria-expanded", String(open));
   nav.classList.toggle("is-open", open);
-  document.body.style.overflow = open ? "hidden" : "";
 }
 
 menuButton?.addEventListener("click", () => {
-  setMenu(menuButton.getAttribute("aria-expanded") !== "true");
+  const willOpen = menuButton.getAttribute("aria-expanded") !== "true";
+  if (willOpen) closeLanguageMenu();
+  setMenu(willOpen);
 });
 
 nav?.querySelectorAll("a").forEach((link) => {
@@ -17,6 +19,18 @@ nav?.querySelectorAll("a").forEach((link) => {
 
 window.addEventListener("resize", () => {
   if (window.innerWidth > 980) setMenu(false);
+});
+
+document.addEventListener("click", (event) => {
+  if (nav?.classList.contains("is-open") && !event.target.closest(".site-header")) {
+    setMenu(false);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setMenu(false);
+  }
 });
 
 const certificateDialog = document.querySelector(".certificate-dialog");
@@ -556,6 +570,7 @@ function closeLanguageMenu() {
 
 languageToggle?.addEventListener("click", () => {
   const willOpen = languageToggle.getAttribute("aria-expanded") !== "true";
+  if (willOpen) setMenu(false);
   languageToggle.setAttribute("aria-expanded", String(willOpen));
   languageMenu.hidden = !willOpen;
 });

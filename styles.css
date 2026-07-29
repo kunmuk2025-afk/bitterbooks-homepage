@@ -1602,6 +1602,7 @@ a {
 
 @media (max-width: 980px) {
   .site-header {
+    z-index: 100;
     grid-template-columns: 1fr auto auto;
     gap: 8px;
     height: 88px;
@@ -1660,36 +1661,60 @@ a {
   }
 
   .site-nav {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 34px;
-    color: var(--paper);
-    background: var(--cobalt);
+    position: absolute;
+    top: calc(100% - 2px);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    display: grid;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid rgba(23, 26, 36, 0.16);
+    border-radius: 16px;
+    color: var(--ink);
+    background: #fffdf7;
+    box-shadow: 0 18px 42px rgba(23, 26, 36, 0.18);
     margin-right: 0;
-    font-size: 34px;
+    font-size: 16px;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transform: translateY(-12px);
-    transition: opacity 180ms ease, transform 180ms ease;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition:
+      opacity 180ms ease,
+      visibility 180ms ease,
+      transform 180ms ease;
   }
 
   .site-nav.is-open {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
-  .menu-toggle[aria-expanded="true"] span:not(.sr-only) {
-    background: var(--paper);
+  .site-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 0 16px;
+    border-radius: 10px;
+    background: rgba(245, 240, 230, 0.58);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
   }
 
-  .menu-toggle[aria-expanded="true"] ~ .header-tools .language-toggle {
-    color: var(--paper);
-    border-color: rgba(255, 255, 255, 0.52);
-    background: transparent;
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    color: var(--cobalt);
+    background: rgba(23, 70, 162, 0.1);
+    outline: none;
+  }
+
+  .site-nav a::after {
+    display: none;
   }
 
   .hero {
@@ -1860,6 +1885,18 @@ a {
 
   .site-header {
     width: calc(100% - 28px);
+  }
+
+  .site-nav {
+    top: calc(100% - 4px);
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .site-nav a {
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 15px;
   }
 
   .brand strong {
