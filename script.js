@@ -593,3 +593,24 @@ try {
   savedLanguage = null;
 }
 if (languageSettings[savedLanguage]) setLanguage(savedLanguage);
+
+function loadVisitorCounter() {
+  const todayCounter = document.querySelector('[data-icount="today"]');
+  const totalCounter = document.querySelector('[data-icount="total"]');
+  if (!todayCounter || !totalCounter) return;
+
+  const trackingScript = document.createElement("script");
+  const trackingParams = new URLSearchParams({
+    id: "bitterbooks.com",
+    url: window.location.href,
+    ref: document.referrer,
+    t: String(Date.now()),
+  });
+
+  trackingScript.src = `https://icount.kr/count.php?${trackingParams.toString()}`;
+  trackingScript.async = true;
+  trackingScript.dataset.visitorCounter = "true";
+  document.head.appendChild(trackingScript);
+}
+
+loadVisitorCounter();
