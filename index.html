@@ -37,7 +37,7 @@
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260729-4" />
+    <link rel="stylesheet" href="./styles.css?v=20260730-1" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -646,7 +646,14 @@
         <p class="footer-address">사업장 주소: 경기도 용인시 기흥구 동백죽전대로 444, 6층 씨608-디68호 쥬네브(중동)</p>
         <a href="mailto:bitterbooks@naver.com">bitterbooks@naver.com</a>
       </div>
-      <p class="copyright">© 2026 KUNMUK CO., LTD.</p>
+      <p class="copyright">
+        <span>© 2026 KUNMUK CO., LTD.</span>
+        <span class="visitor-counter" aria-label="방문자 수">
+          <span>TODAY <strong data-icount="today-uv">–</strong></span>
+          <i aria-hidden="true">·</i>
+          <span>TOTAL <strong data-icount="total-uv">–</strong></span>
+        </span>
+      </p>
     </footer>
 
     <dialog class="certificate-dialog" aria-labelledby="certificate-dialog-title">
@@ -655,6 +662,7 @@
       <img src="" alt="" />
     </dialog>
 
+    <script src="https://icount.kr/c.js?id=bitterbooks.com" defer></script>
     <script src="./script.js?v=20260729-4" defer></script>
   </body>
 </html>
