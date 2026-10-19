@@ -73,6 +73,10 @@ const currentLanguage = document.querySelector(".current-language");
 const currentLanguageFlag = document.querySelector(".current-language-flag");
 
 const englishCopy = {
+  ".ink-official h3": "The bitter printing in BitterBooks.<br />Discover the technology behind it.",
+  ".ink-official-copy": "BitterBooks picture books use BITTER INK, Kunmuk’s technology brand. Explore bitter-taste inks, printing and coating development, and real product applications on the official website.",
+  ".ink-official-tech": "Explore BITTER INK technology ↗",
+  ".ink-official-case": "See the BitterBooks application ↗",
   ".site-nav a:nth-child(1)": "About",
   ".site-nav a:nth-child(2)": "Books",
   ".site-nav a:nth-child(3)": "BitterINK Lab",
@@ -220,6 +224,10 @@ const englishCopy = {
 };
 
 const chineseCopy = {
+  ".ink-official h3": "BitterBooks 的苦味印刷，<br />了解背后的技术。",
+  ".ink-official-copy": "BitterBooks 绘本采用 Kunmuk 的技术品牌 BITTER INK。您可以在官方网站了解苦味油墨、印刷与涂层开发，以及实际产品应用案例。",
+  ".ink-official-tech": "了解 BITTER INK 技术（英文）↗",
+  ".ink-official-case": "查看 BitterBooks 应用案例（英文）↗",
   ".site-nav a:nth-child(1)": "品牌介绍",
   ".site-nav a:nth-child(2)": "出版图书",
   ".site-nav a:nth-child(3)": "BitterINK 实验室",
@@ -359,6 +367,10 @@ const chineseCopy = {
 };
 
 const japaneseCopy = {
+  ".ink-official h3": "BitterBooks の苦味印刷。<br />その技術を、もっと詳しく。",
+  ".ink-official-copy": "BitterBooks の絵本には、Kunmuk の技術ブランド BITTER INK を採用しています。苦味インクの仕組み、印刷・コーティングの開発、製品への活用事例を公式サイトでご覧いただけます。",
+  ".ink-official-tech": "BITTER INK の技術を知る（英語）↗",
+  ".ink-official-case": "BitterBooks の活用事例を見る（英語）↗",
   ".site-nav a:nth-child(1)": "ビターブックスについて",
   ".site-nav a:nth-child(2)": "刊行書籍",
   ".site-nav a:nth-child(3)": "BitterINK ラボ",
@@ -550,6 +562,10 @@ function setLanguage(language) {
       node.innerHTML = copy ? copy[selector] : korean;
     });
   });
+
+  const inkBase = "https://www.bitterink.com" + (normalizedLanguage === "ko" ? "" : "/en");
+  document.querySelector(".ink-official-tech")?.setAttribute("href", inkBase + "/technology/");
+  document.querySelector(".ink-official-case")?.setAttribute("href", inkBase + "/applications/#bitterbooks");
 
   document.documentElement.lang = normalizedLanguage;
   document.title = settings.title;
