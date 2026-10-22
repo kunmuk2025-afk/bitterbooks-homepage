@@ -1,81 +1,163 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#58d7e3">
-  <title>비터북스(BitterBooks) | 감각으로 배우는 그림책</title>
-  <meta name="description" content="읽는 순간 이야기가 살아나는 감각 동화책, 비터북스입니다.">
-  <meta property="og:title" content="비터북스(BitterBooks) | 감각으로 배우는 그림책">
-  <meta property="og:description" content="손끝으로 느끼고 마음으로 오래 기억하는 감각 동화책">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#a0e5eb">
+  <title>비터북스 | 읽는 순간, 이야기가 살아나요</title>
+  <meta name="description" content="손끝으로 느끼고, 마음으로 오래 기억하는 감각 동화책. 비터북스의 내 손가락 콩이 발가락과 이놈 선생님을 만나보세요.">
+  <meta property="og:title" content="비터북스 | 읽는 순간, 이야기가 살아나요">
+  <meta property="og:description" content="아이의 상상력과 감각을 깨우는 비터북스의 이야기">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.bitterbooks.com/">
-  <meta property="og:image" content="https://www.bitterbooks.com/assets/bitterbooks-landing-exact.jpg">
+  <meta property="og:image" content="https://www.bitterbooks.com/assets/book1-cover.webp">
   <link rel="canonical" href="https://www.bitterbooks.com/">
-  <link rel="stylesheet" href="styles.css?v=20261022-exact1">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"비터북스(BitterBooks)","url":"https://www.bitterbooks.com/","brand":"BitterBooks","sameAs":["https://www.instagram.com/bitterbooks2025/","https://www.youtube.com/@BitterBooks/"]}</script>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="responsive-v2.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"비터북스","alternateName":"Bitter Books","url":"https://www.bitterbooks.com/","sameAs":["https://www.instagram.com/bitterbooks2025/","https://www.youtube.com/@BitterBooks/"]}</script>
 </head>
 <body>
-  <a class="skip-link" href="#books">출간 도서로 바로가기</a>
-
-  <main class="poster-shell" id="top">
-    <img class="poster" src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="비터북스 홈페이지. 파란색과 노란색 배경 위에 내 손가락 콩이 발가락의 여자아이와 강아지, 이놈 선생님의 고릴라 선생님과 고양이·수달 캐릭터가 함께 등장합니다. 읽는 순간 이야기가 살아나요라는 제목 아래 출간 도서, 쓴맛 연구소, 안전한 제작 안내가 소개됩니다.">
-
-    <a class="hotspot logo" href="#top" aria-label="비터북스 홈"></a>
-    <a class="hotspot nav-about" href="#about" aria-label="비터북스 소개"></a>
-    <a class="hotspot nav-books" href="#books" aria-label="출간 도서"></a>
-    <a class="hotspot nav-lab" href="#lab" aria-label="쓴맛 연구소"></a>
-    <a class="hotspot nav-sns" href="#sns" aria-label="SNS"></a>
-    <button class="hotspot language-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="언어 선택"></button>
-
-    <a class="hotspot hero-books" href="#books" aria-label="책 만나보기"></a>
-    <a class="hotspot hero-story" href="#about" aria-label="비터북스 이야기"></a>
-
-    <button class="hotspot book-one-detail" type="button" data-book="book1" aria-label="내 손가락 콩이 발가락 자세히 보기"></button>
-    <button class="hotspot book-two-detail" type="button" data-book="book2" aria-label="이놈 선생님 자세히 보기"></button>
-    <a class="hotspot lab-detail" href="https://www.bitterink.com/" target="_blank" rel="noopener" aria-label="쓴맛 연구소 자세히 보기"></a>
-
-    <a class="hotspot instagram" href="https://www.instagram.com/bitterbooks2025/" target="_blank" rel="noopener" aria-label="비터북스 인스타그램"></a>
-    <a class="hotspot youtube" href="https://www.youtube.com/@BitterBooks/" target="_blank" rel="noopener" aria-label="비터북스 유튜브"></a>
-    <a class="hotspot smartstore" href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener" aria-label="비터북스 네이버 스마트스토어"></a>
-
-    <span class="anchor-target" id="books"></span>
-    <span class="anchor-target" id="about"></span>
-    <span class="anchor-target" id="lab"></span>
-    <span class="anchor-target" id="sns"></span>
-
-    <div class="language-menu" hidden>
-      <button type="button" data-lang="ko">한국어 · KR</button>
-      <span>원본 디자인은 한국어로 제공됩니다.</span>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="BITTER BOOKS 홈">
+        <strong>BITTER BOOKS</strong>
+      </a>
+      <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
+        <a href="#about" data-t="navAbout">비터북스 소개</a>
+        <a href="#books" data-t="navBooks">출간 도서</a>
+        <a href="#lab" data-t="navLab">쓴맛 연구소</a>
+        <a href="#social" data-t="navSocial">SNS</a>
+      </nav>
+      <div class="header-tools">
+        <label class="sr-only" for="language">언어 선택</label>
+        <select id="language" aria-label="언어 선택"><option value="ko">KR</option><option value="en">EN</option><option value="zh">中文</option><option value="ja">JP</option></select>
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-t="menu">메뉴</button>
+      </div>
     </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-stage">
+        <div class="hero-character girl">
+          <span class="speech" data-t="bubbleGirl">우리, 책 속에서<br>만나자!</span>
+          <img class="character-image" src="assets/girl-dog-cutout.webp" width="850" height="1133" alt="손을 흔드는 여자아이와 강아지 콩이">
+        </div>
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            <span class="sr-only" data-t="heroTitle">읽는 순간, 이야기가 살아나요.</span>
+            <span class="art title-art" style="--x:364;--y:142;--w:320;--h:260" aria-hidden="true"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt=""></span>
+            <span class="translated-title" aria-hidden="true"></span>
+          </h1>
+          <p class="hero-sub" data-t="heroSub">손끝으로 느끼고, 마음으로 오래 기억하는 감각 동화책</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#books"><span data-t="meetBooks">책 만나보기</span><span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#about"><span data-t="ourStory">비터북스 이야기</span><span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="hero-character teacher">
+          <span class="speech" data-t="bubbleTeacher">좋은 이야기는 언제나<br>발견할 수 있지!</span>
+          <img class="character-image" src="assets/teacher-cutout.webp" width="850" height="1133" alt="돋보기를 든 이놈 선생님과 동물 친구들">
+        </div>
+      </div>
+    </section>
+
+    <section class="stories container" id="books" aria-labelledby="books-title">
+      <div class="section-heading">
+        <h2 id="books-title" data-t="booksTitle">오늘은 어떤 이야기를 만나볼까요?</h2>
+        <p data-t="booksIntro">아이의 상상력과 감각을 깨우는 비터북스의 이야기들을 만나보세요.</p>
+      </div>
+      <div class="book-grid">
+        <article class="book-card aqua">
+          <div class="card-copy">
+            <span class="series">BITTER BOOKS<br><b>SERIES <i>1</i></b></span>
+            <h3 data-t="book1Title">내 손가락<br>콩이 발가락</h3>
+            <p data-t="book1Desc">읽기만 해도 손가락을<br>빨고 싶지 않아요!<br>쓴맛 동화책 최초 출시!</p>
+            <button class="button secondary" type="button" data-book="book1"><span data-t="details">자세히 보기</span><span aria-hidden="true">→</span></button>
+          </div>
+          <div class="card-art">
+            <img class="character-image" src="assets/girl-dog-cutout.webp" width="850" height="1133" alt="손을 높이 든 여자아이와 콩이" loading="lazy">
+          </div>
+        </article>
+        <article class="book-card yellow">
+          <div class="card-copy">
+            <span class="series">BITTER BOOKS<br><b>SERIES <i>2</i></b></span>
+            <h3 data-t="book2Title">이놈<br>선생님</h3>
+            <p data-t="book2Desc">혀끝으로 느끼는<br>감각 동화책</p>
+            <button class="button secondary" type="button" data-book="book2"><span data-t="details">자세히 보기</span><span aria-hidden="true">→</span></button>
+          </div>
+          <div class="card-art">
+            <img class="character-image" src="assets/teacher-cutout.webp" width="850" height="1133" alt="이놈 선생님과 고양이, 수달" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="info-grid container" id="about" aria-label="비터북스의 생각">
+      <article class="info-card lab-card" id="lab">
+        <div class="info-copy">
+          <h2 data-t="labTitle">쓴맛 연구소</h2>
+          <p data-t="labDesc">아이의 더 건강한 성장을 위한<br>비터북스의 특별한 생각과 이야기</p>
+          <a class="button secondary" href="https://www.bitterink.com/" target="_blank" rel="noopener"><span data-t="details">자세히 보기</span><span aria-hidden="true">→</span></a>
+        </div>
+        <span class="art lab-art" style="--x:300;--y:1054;--w:248;--h:242"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="좋은 이야기가 더 나은 내일을 만듭니다. 펼쳐진 책과 새싹 그림" loading="lazy"></span>
+      </article>
+      <article class="info-card trust-card">
+        <div class="info-copy">
+          <h2 data-t="trustTitle">안심하고<br>만날 수 있는 책</h2>
+          <p data-t="trustDesc">우리 아이가 만나는 책,<br>비터북스는 꼼꼼하게 만듭니다.</p>
+          <div class="trust-labels"><span>MADE IN KOREA</span><span>Soy Ink</span></div>
+          <button class="text-button" type="button" data-open="faq" data-t="faqLink">안전·사용 안내 보기 →</button>
+        </div>
+        <span class="art tree-art" style="--x:795;--y:1068;--w:201;--h:224"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="아이의 오늘이 더 빛나도록 좋은 이야기를 만듭니다. 나무 그림" loading="lazy"></span>
+      </article>
+    </section>
   </main>
 
-  <dialog class="book-dialog" id="book-dialog">
-    <button class="dialog-close" type="button" aria-label="닫기">×</button>
-    <div class="dialog-content">
-      <img id="dialog-cover" src="assets/book1-cover.webp" alt="">
-      <div>
-        <small id="dialog-series">BITTER BOOKS SERIES 1</small>
-        <h1 id="dialog-title"></h1>
-        <p id="dialog-description"></p>
-        <div class="dialog-actions">
-          <a id="dialog-coupang" href="#" target="_blank" rel="noopener">쿠팡에서 구매하기</a>
-          <a href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener">네이버 스토어</a>
+  <footer class="site-footer" id="social">
+    <div class="footer-inner container">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="비터북스 홈"><strong>BITTER BOOKS</strong></a>
+        <p data-t="footerDesc">어린이의 오늘이<br>더 빛나는 이야기를 만듭니다.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/bitterbooks2025/" target="_blank" rel="noopener" aria-label="Instagram"><span class="art" style="--x:61;--y:1457;--w:22;--h:24"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt=""></span></a>
+          <a href="https://www.youtube.com/@BitterBooks/" target="_blank" rel="noopener" aria-label="YouTube"><span class="art" style="--x:97;--y:1457;--w:23;--h:24"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt=""></span></a>
+          <a href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener" aria-label="네이버 스마트스토어"><span class="art" style="--x:132;--y:1457;--w:25;--h:24"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt=""></span></a>
         </div>
+      </div>
+      <span class="art footer-scene" style="--x:280;--y:1320;--w:470;--h:216"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="함께 앉아 풍경을 바라보는 비터북스 친구들" loading="lazy"></span>
+      <nav class="footer-nav" aria-label="하단 메뉴">
+        <a href="#about" data-t="navAbout">비터북스 소개</a><a href="#books" data-t="navBooks">출간 도서</a><a href="#lab" data-t="navLab">쓴맛 연구소</a><a href="mailto:bitterbooks@naver.com" data-t="contact">문의하기</a>
+      </nav>
+    </div>
+    <div class="company container">
+      <p>주식회사 건묵 · 대표 노현민 · 사업자등록번호 122-86-49985</p>
+      <p>통신판매업신고 제2025-용인기흥-02468호 · 출판사 신고 제2025-000099호</p>
+      <p>경기도 용인시 기흥구 동백죽전대로 444, 6층 씨608-디68호 쥬네브(중동)</p>
+      <p>© 2026 BITTER BOOKS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <dialog id="book-dialog" class="dialog" aria-labelledby="dialog-title">
+    <button class="close-button" type="button" data-close data-t="close">닫기</button>
+    <div class="book-dialog-layout">
+      <img id="dialog-cover" src="assets/book1-cover.webp" alt="" width="300" height="370">
+      <div><p id="dialog-series" class="dialog-kicker"></p><h2 id="dialog-title"></h2><p id="dialog-description"></p><p class="age-note" data-t="ageNote">만 3세 이상 · 보호자와 함께 읽어주세요.</p>
+        <div class="purchase-links"><a id="dialog-coupang" class="button primary" target="_blank" rel="noopener" data-t="buyCoupang">쿠팡에서 구매하기</a><a class="button secondary" href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener" data-t="buyNaver">네이버 스토어</a></div>
       </div>
     </div>
   </dialog>
-
-  <section class="seo-content" aria-label="비터북스 소개">
-    <h1>읽는 순간, 이야기가 살아나요.</h1>
-    <p>손끝으로 느끼고 마음으로 오래 기억하는 감각 동화책 비터북스입니다.</p>
-    <h2>출간 도서</h2>
-    <h3>내 손가락 콩이 발가락</h3>
-    <p>읽기만 해도 손가락을 빨고 싶지 않아요. 쓴맛 동화책 최초 출시.</p>
-    <h3>이놈 선생님</h3>
-    <p>허물로 느끼며 배우는 감각 동화책입니다.</p>
-  </section>
-
-  <script type="module" src="script.js?v=20261022-exact1"></script>
+  <dialog id="faq-dialog" class="dialog faq-dialog" aria-labelledby="faq-title">
+    <button class="close-button" type="button" data-close data-t="close">닫기</button>
+    <h2 id="faq-title" data-t="faqTitle">아이와 함께 읽기 전, 확인해 주세요.</h2>
+    <details><summary data-t="q1">쓴맛 체험은 어떻게 하나요?</summary><p data-t="a1">식용 제품이 아닙니다. 보호자와 함께 책에 안내된 부위에서 가볍게 체험하고, 아이에게 억지로 체험을 강요하지 마세요.</p></details>
+    <details><summary data-t="q2">몇 살부터 읽을 수 있나요?</summary><p data-t="a2">권장 연령은 만 3세 이상입니다. 보호자와 함께 이야기를 읽고 사용 안내를 확인해 주세요.</p></details>
+    <details><summary data-t="q3">궁금한 점은 어디로 문의하나요?</summary><p><a href="mailto:bitterbooks@naver.com">bitterbooks@naver.com</a></p></details>
+  </dialog>
+  <script type="module" src="script.js?v=responsive-20261022-1"></script>
 </body>
 </html>
