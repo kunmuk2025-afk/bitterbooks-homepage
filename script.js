@@ -1,632 +1,131 @@
-const menuButton = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".site-nav");
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-function setMenu(open) {
-  if (!menuButton || !nav) return;
-  menuButton.setAttribute("aria-expanded", String(open));
-  nav.classList.toggle("is-open", open);
+const header = $('.site-header');
+const menuButton = $('.menu-button');
+const mobileNav = $('.mobile-nav');
+const language = $('.language');
+const languageButton = $('.language-button');
+
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+function closeMobileMenu() {
+  mobileNav.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
 }
 
-menuButton?.addEventListener("click", () => {
-  const willOpen = menuButton.getAttribute("aria-expanded") !== "true";
-  if (willOpen) closeLanguageMenu();
-  setMenu(willOpen);
+menuButton.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  document.body.classList.toggle('menu-open', isOpen);
 });
 
-nav?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => setMenu(false));
-});
+$$('.mobile-nav a').forEach(link => link.addEventListener('click', closeMobileMenu));
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 980) setMenu(false);
+languageButton.addEventListener('click', (event) => {
+  event.stopPropagation();
+  const isOpen = language.classList.toggle('open');
+  languageButton.setAttribute('aria-expanded', String(isOpen));
 });
-
-document.addEventListener("click", (event) => {
-  if (nav?.classList.contains("is-open") && !event.target.closest(".site-header")) {
-    setMenu(false);
+document.addEventListener('click', (event) => {
+  if (!language.contains(event.target)) {
+    language.classList.remove('open');
+    languageButton.setAttribute('aria-expanded', 'false');
   }
+  if (!header.contains(event.target)) closeMobileMenu();
 });
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    setMenu(false);
-  }
-});
-
-const certificateDialog = document.querySelector(".certificate-dialog");
-const certificateImage = certificateDialog?.querySelector("img");
-const certificateTitle = certificateDialog?.querySelector("h2");
-const dialogClose = certificateDialog?.querySelector(".dialog-close");
-
-document.querySelectorAll(".certificate-card").forEach((card) => {
-  card.addEventListener("click", () => {
-    const language = document.documentElement.lang;
-    const titleByLanguage = {
-      ko: card.dataset.title,
-      en: card.dataset.titleEn,
-      zh: card.dataset.titleZh,
-      ja: card.dataset.titleJa,
-    };
-    const originalLabel = {
-      ko: "원본",
-      en: "original document",
-      zh: "原始文件",
-      ja: "原本",
-    };
-    const title = titleByLanguage[language] || card.dataset.title;
-    certificateImage.src = card.dataset.certificate;
-    certificateImage.alt = `${title}, ${originalLabel[language] || originalLabel.ko}`;
-    certificateTitle.textContent = title;
-    certificateDialog.showModal();
-  });
-});
-
-dialogClose?.addEventListener("click", () => certificateDialog.close());
-
-certificateDialog?.addEventListener("click", (event) => {
-  if (event.target === certificateDialog) certificateDialog.close();
-});
-
-const languageToggle = document.querySelector(".language-toggle");
-const languageMenu = document.querySelector(".language-menu");
-const currentLanguage = document.querySelector(".current-language");
-const currentLanguageFlag = document.querySelector(".current-language-flag");
-
-const englishCopy = {
-  ".ink-official h3": "The bitter printing in BitterBooks.<br />Discover the technology behind it.",
-  ".ink-official-copy": "BitterBooks picture books use BITTER INK, Kunmuk’s technology brand. Explore bitter-taste inks, printing and coating development, and real product applications on the official website.",
-  ".ink-official-tech": "Explore BITTER INK technology ↗",
-  ".ink-official-case": "See the BitterBooks application ↗",
-  ".site-nav a:nth-child(1)": "About",
-  ".site-nav a:nth-child(2)": "Books",
-  ".site-nav a:nth-child(3)": "BitterINK Lab",
-  ".site-nav a:nth-child(4)": "Social",
-  ".header-buy": "Shop",
-  ".eyebrow": "Stories that reach the senses before words",
-  ".hero h1": "Turning children’s habits<br />into stories.",
-  ".hero-description":
-    "Instead of scolding or forcing a stop, we help children feel and understand for themselves. Bitter Books connects patented BitterINK with storytelling to create a new reading experience.",
-  ".button-primary": "Discover Bitter Books <span aria-hidden=\"true\">→</span>",
-  ".text-link": "Where to buy <span aria-hidden=\"true\">↗</span>",
-  ".about-section .section-index": "01 / ABOUT BITTER BOOKS",
-  ".about-heading h2": "Learning begins<br />with all five senses.",
-  ".about-warm-note":
-    "Stories seen with the eyes, met by the fingertips,<br />and remembered by the heart",
-  ".about-lead > p:first-child":
-    "Bitter Books is the world’s first educational and self-development publishing brand to apply bitter-tasting ink, BitterINK.",
-  ".about-caption":
-    "We propose a new reading experience that goes beyond reading—one that is felt, experienced and remembered.",
-  ".about-detail-inner article:nth-child(1) span": "ONE",
-  ".about-detail-inner article:nth-child(1) h3": "Learning through the senses",
-  ".about-detail-inner article:nth-child(1) p":
-    "Guided by the belief that learning begins with all five senses, we create books that help readers reflect on habits and open up new possibilities for growth.",
-  ".about-detail-inner article:nth-child(2) span": "TWO",
-  ".about-detail-inner article:nth-child(2) h3": "Memories felt in the body",
-  ".about-detail-inner article:nth-child(2) p":
-    "Even the best lesson can fade without experience. Bitter Books adds the sensation of bitterness to stories so their educational message can be felt and remembered longer.",
-  ".about-detail-inner article:nth-child(3) span": "THREE",
-  ".about-detail-inner article:nth-child(3) h3": "A small turning point",
-  ".about-detail-inner article:nth-child(3) p":
-    "Every Bitter Books title uses BitterINK, offering children and adults a distinctive moment to feel, think and begin a new behavior for themselves.",
-  ".ink-intro .section-index": "02 / BITTERINK TECHNOLOGY",
-  ".ink-kicker": "See it, touch it, feel it",
-  ".ink-intro h2": "Add sensation to print,<br />and a story becomes an experience.",
-  ".ink-description":
-    "BitterINK is a distinctive printing technology that brings the sensory stimulus of bitterness into printed materials. It combines Veranova’s premium bittering ingredient from the United Kingdom with vegetable soybean-oil-based ink, moving beyond seeing and reading to support recognition and behavioral change through taste.",
-  ".ink-story-window p":
-    "Bitterness is not meant to surprise a child.<br />It is a small sensory cue that helps the story’s message stay in the body and memory.",
-  ".ink-facts article:nth-child(1) h3": "Patented printing technology",
-  ".ink-facts article:nth-child(1) p":
-    "A bitter ink composition and printing technology protected by Korean Patent No. 10-2761689.",
-  ".ink-facts article:nth-child(2) h3": "Children’s product safety testing",
-  ".ink-facts article:nth-child(2) p":
-    "Bitter Books toys completed testing under Korea’s common safety standards for children’s products, with a KOTITI test report.",
-  ".ink-facts article:nth-child(3) h3": "Multiple printing methods",
-  ".ink-facts article:nth-child(3) p":
-    "Developed for applications ranging from offset printing on paper to UV printing and gravure printing for films and stickers.",
-  ".print-methods span:nth-child(1)": "OFFSET INK : For books and educational tools",
-  ".print-methods span:nth-child(2)": "UV INK : For plastics and non-absorbent materials",
-  ".print-methods span:nth-child(3)": "GRAVURE INK : For films and vinyl",
-  ".certificate-heading .section-index": "PROOF & CERTIFICATION",
-  ".certificate-heading h3": "Our technology is backed by evidence.",
-  ".certificate-heading > p": "Select an image to view the original document.",
-  ".certificate-card:nth-child(1) span": "KOREAN PATENT",
-  ".certificate-card:nth-child(1) strong": "Patent No. 10-2761689",
-  ".certificate-card:nth-child(2) span": "CHILDREN’S PRODUCT SAFETY",
-  ".certificate-card:nth-child(2) strong": "KOTITI Test Report",
-  ".certificate-card:nth-child(3) span": "GLOBAL IP",
-  ".certificate-card:nth-child(3) strong": "U.S. Patent Application",
-  ".faq-heading .section-index": "BITTERINK FAQ",
-  ".faq-heading h3": "Before reading together,<br />find quick answers here.",
-  ".faq-heading > p:last-child": "Select a question to reveal a short answer.",
-  ".soyink-note p":
-    "BitterINK products are made with plant-based soybean-oil <strong>SoyINK-certified ink</strong>.",
-  ".faq-list details:nth-child(1) summary":
-    '<span class="faq-number">Q1</span><span class="faq-question-text">Is the bitter ink in this book safe?</span>',
-  ".faq-list details:nth-child(1) p":
-    "It uses plant-based SoyINK and Veranova’s premium bittering ingredient from the United Kingdom, and has completed children’s product safety testing.",
-  ".faq-list details:nth-child(2) summary":
-    '<span class="faq-number">Q2</span><span class="faq-question-text">Is brief contact with the mouth okay?</span>',
-  ".faq-list details:nth-child(2) p":
-    "It is designed for brief sensory contact. It is not food, so use only a light touch with a fingertip or the tip of the tongue.",
-  ".faq-list details:nth-child(3) summary":
-    '<span class="faq-number">Q3</span><span class="faq-question-text">Does the bitter taste spread through the book?</span>',
-  ".faq-list details:nth-child(3) p":
-    "It is printed only on selected scenes and fixed after drying. A faint taste may be noticed nearby depending on the paper.",
-  ".faq-list details:nth-child(4) summary":
-    '<span class="faq-number">Q4</span><span class="faq-question-text">How do we use the experience stickers?</span>',
-  ".faq-list details:nth-child(4) p":
-    "When several children share the book, place an included sticker on the scene and let each child experience one hygienically.",
-  ".faq-list details:nth-child(5) summary":
-    '<span class="faq-number">Q5</span><span class="faq-question-text">What age is it recommended for?</span>',
-  ".faq-list details:nth-child(5) p":
-    "It is recommended for ages three and older. The experience is best shared lightly with a caregiver.",
-  ".faq-list details:nth-child(6) summary":
-    '<span class="faq-number">Q6</span><span class="faq-question-text">Does the bitter taste last after repeated use?</span>',
-  ".faq-list details:nth-child(6) p":
-    "Moisture and friction can gradually weaken it. Use the included bitter-taste stickers when another experience is needed.",
-  ".story-header .section-index": "03 / BITTER BOOKS SERIES",
-  ".story-header h2": "Feel, laugh,<br />and change from within.",
-  ".story-header > p":
-    "Bitter Books chooses stories over lectures and experience over pressure. Meet two different sensory stories.",
-  ".book-card:nth-child(1) .story-label": "BITTER BOOKS SERIES 01",
-  ".book-card:nth-child(1) .book-copy h3": "My Finger, Kong’s Toe",
-  ".book-card:nth-child(1) .book-copy > p:not(.story-label)":
-    "A warm picture book that looks closely at why children suck their fingers. Its bitter-taste experience helps children feel the result of the behavior and take their first step toward stopping without being scolded.",
-  ".book-card:nth-child(1) li:nth-child(1)":
-    "A sensory picture book for children aged three and older and their caregivers",
-  ".book-card:nth-child(1) li:nth-child(2)":
-    "Bitter-taste experience with Korean children’s product safety confirmation",
-  ".book-card:nth-child(2) .story-label": "BITTER BOOKS SERIES 02",
-  ".book-card:nth-child(2) .book-copy h3": "Teacher Inom",
-  ".book-card:nth-child(2) .book-copy > p:not(.story-label)":
-    "A playful five-senses storybook that humorously points out everyday misbehavior. The comical teacher and a hands-on bitter sticker help children remember the cause and result of their actions.",
-  ".book-card:nth-child(2) li:nth-child(1)":
-    "Everyday habits learned through a funny story",
-  ".book-card:nth-child(2) li:nth-child(2)":
-    "Includes an experiential bitter-taste sticker",
-  ".book-buy": "Buy on Coupang <span aria-hidden=\"true\">↗</span>",
-  ".book-store": "Naver SmartStore <span aria-hidden=\"true\">↗</span>",
-  ".buy-section .section-index": "04 / WHERE TO BUY",
-  ".buy-section h2": "Meet Bitter Books<br />at your preferred online store.",
-  ".store-links a:nth-child(1) strong": "Buy My Finger, Kong’s Toe",
-  ".store-links a:nth-child(2) strong": "Buy Teacher Inom",
-  ".store-links a:nth-child(3) strong": "Official Bitter Books Store",
-  ".social-intro .section-index": "05 / FOLLOW THE STORY",
-  ".social-intro h2":
-    "Be the first to see<br />how our books and new stories are made.",
-  ".social-intro > p:last-child":
-    "Follow scenes from our picture books, behind-the-scenes moments and short videos to enjoy with children.",
-  ".instagram-card p": "Discover the making of our books and stories from inside the pages.",
-  ".youtube-card p": "Watch playful Bitter Books videos together with your child.",
-  ".collaboration-intro .section-index": "06 / CONTACT US",
-  ".collaboration-intro h2":
-    "Let’s create a new kind<br />of sensory story together.",
-  ".collaboration-intro > p:last-child":
-    "Bitter Books welcomes partnerships that make children’s everyday experiences kinder and more memorable.",
-  ".collaboration-fields article:nth-child(1) h3": "Publishing & education",
-  ".collaboration-fields article:nth-child(1) p":
-    "Books, learning tools and stickers designed to reinforce behavior change and learning.",
-  ".collaboration-fields article:nth-child(2) h3": "Pet care",
-  ".collaboration-fields article:nth-child(2) p":
-    "Tapes and stickers for behavior guidance and protection of furniture and electrical cords.",
-  ".collaboration-fields article:nth-child(3) h3": "Packaging & protection",
-  ".collaboration-fields article:nth-child(3) p":
-    "Packaging and protective products designed with children’s safety in mind.",
-  ".footer-brand p": "Books learned through the senses and grown through stories",
-  ".footer-info > p:nth-child(1)": "KUNMUK Co., Ltd. · CEO Hyunmin Roh",
-  ".footer-info > p:nth-child(2)": "Business registration No. 122-86-49985",
-  ".footer-info > p:nth-child(3)":
-    "E-commerce registration No. 2025-Yongin Giheung-02468",
-  ".footer-info > p:nth-child(4)": "Publisher registration No. 2025-000099",
-  ".footer-info .footer-address":
-    "Business address: 6F, C608-D68, 444 Dongbaekjukjeon-daero, Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea",
-};
-
-const chineseCopy = {
-  ".ink-official h3": "BitterBooks 的苦味印刷，<br />了解背后的技术。",
-  ".ink-official-copy": "BitterBooks 绘本采用 Kunmuk 的技术品牌 BITTER INK。您可以在官方网站了解苦味油墨、印刷与涂层开发，以及实际产品应用案例。",
-  ".ink-official-tech": "了解 BITTER INK 技术（英文）↗",
-  ".ink-official-case": "查看 BitterBooks 应用案例（英文）↗",
-  ".site-nav a:nth-child(1)": "品牌介绍",
-  ".site-nav a:nth-child(2)": "出版图书",
-  ".site-nav a:nth-child(3)": "BitterINK 实验室",
-  ".site-nav a:nth-child(4)": "社交媒体",
-  ".header-buy": "购买",
-  ".eyebrow": "比语言更早触达感官的故事",
-  ".hero h1": "把孩子的习惯，<br />变成故事。",
-  ".hero-description":
-    "不责骂，也不强迫制止，而是让孩子亲自感受并理解。Bitter Books 将专利 BitterINK 与故事相结合，创造全新的阅读体验。",
-  ".button-primary": "了解 Bitter Books <span aria-hidden=\"true\">→</span>",
-  ".text-link": "查看购买渠道 <span aria-hidden=\"true\">↗</span>",
-  ".about-section .section-index": "01 / 关于 BITTER BOOKS",
-  ".about-heading h2": "学习，<br />从五感开始。",
-  ".about-warm-note": "用眼睛阅读，用指尖感受，<br />在心里久久停留的故事",
-  ".about-lead > p:first-child":
-    "Bitter Books 是全球首个将苦味油墨 BitterINK 应用于教育与自我成长领域的出版品牌。",
-  ".about-caption":
-    "我们提出一种不止于阅读，而是通过身体感受并长久记忆的全新阅读体验。",
-  ".about-detail-inner article:nth-child(1) span": "一",
-  ".about-detail-inner article:nth-child(1) h3": "从五感开始的学习",
-  ".about-detail-inner article:nth-child(1) p":
-    "秉持“学习从五感开始”的理念，我们通过感官学习帮助读者重新认识习惯，拓展成长的可能。",
-  ".about-detail-inner article:nth-child(2) span": "二",
-  ".about-detail-inner article:nth-child(2) h3": "留在身体里的记忆",
-  ".about-detail-inner article:nth-child(2) p":
-    "再好的教育，如果缺少体验也容易被遗忘。Bitter Books 将苦味感受融入故事，让教育信息被亲自感受并长久记住。",
-  ".about-detail-inner article:nth-child(3) span": "三",
-  ".about-detail-inner article:nth-child(3) h3": "行为改变的小小起点",
-  ".about-detail-inner article:nth-child(3) p":
-    "Bitter Books 的每一本书都使用 BitterINK，为孩子和成人带来亲自感受、思考并开始新行动的特别时刻。",
-  ".ink-intro .section-index": "02 / BITTERINK 技术",
-  ".ink-kicker": "看见、触摸、感受",
-  ".ink-intro h2": "当印刷加入感官，<br />故事便成为体验。",
-  ".ink-description":
-    "BitterINK 是将“苦味”感官刺激融入印刷品的独特技术。它把英国 Veranova 的优质苦味原料与植物性大豆油墨结合，让阅读不只停留在视觉，也通过味觉帮助认知与行为转变。",
-  ".ink-story-window p":
-    "苦味不是为了吓到孩子，<br />而是帮助身体记住故事信息的小小感官提示。",
-  ".ink-facts article:nth-child(1) h3": "专利印刷技术",
-  ".ink-facts article:nth-child(1) p":
-    "受韩国注册专利第 10-2761689 号保护的苦味油墨配方与印刷技术。",
-  ".ink-facts article:nth-child(2) h3": "儿童产品安全检测",
-  ".ink-facts article:nth-child(2) p":
-    "Bitter Books 玩具已完成韩国儿童产品通用安全标准检测，并取得 KOTITI 检测报告。",
-  ".ink-facts article:nth-child(3) h3": "多种印刷方式",
-  ".ink-facts article:nth-child(3) p":
-    "从纸张胶印、UV 印刷到薄膜与贴纸的凹版印刷，可按用途和材料灵活应用。",
-  ".print-methods span:nth-child(1)": "OFFSET 油墨：用于图书和教育工具",
-  ".print-methods span:nth-child(2)": "UV 油墨：用于塑料及非吸收材料",
-  ".print-methods span:nth-child(3)": "凹版油墨：用于薄膜和塑料膜",
-  ".certificate-heading .section-index": "证明与认证",
-  ".certificate-heading h3": "我们的技术，有真实资料为证。",
-  ".certificate-heading > p": "点击图片可查看原始文件。",
-  ".certificate-card:nth-child(1) span": "韩国注册专利",
-  ".certificate-card:nth-child(1) strong": "第 10-2761689 号",
-  ".certificate-card:nth-child(2) span": "儿童产品安全确认",
-  ".certificate-card:nth-child(2) strong": "KOTITI 检测报告",
-  ".certificate-card:nth-child(3) span": "全球知识产权",
-  ".certificate-card:nth-child(3) strong": "美国专利申请",
-  ".faq-heading .section-index": "BITTERINK 常见问题",
-  ".faq-heading h3": "亲子共读前，<br />先看看这些常见问题。",
-  ".faq-heading > p:last-child": "点击问题即可查看简短回答。",
-  ".soyink-note p":
-    "BitterINK 产品采用植物性大豆油制成的 <strong>SoyINK 认证油墨</strong>。",
-  ".faq-list details:nth-child(1) summary":
-    '<span class="faq-number">Q1</span><span class="faq-question-text">书中的苦味油墨安全吗？</span>',
-  ".faq-list details:nth-child(1) p":
-    "采用植物性 SoyINK 和英国 Veranova 的优质苦味原料，并已完成儿童产品安全检测。",
-  ".faq-list details:nth-child(2) summary":
-    '<span class="faq-number">Q2</span><span class="faq-question-text">短暂接触口腔也没问题吗？</span>',
-  ".faq-list details:nth-child(2) p":
-    "产品按短暂感官体验设计，并非食品。请仅用指尖或舌尖轻轻体验。",
-  ".faq-list details:nth-child(3) summary":
-    '<span class="faq-number">Q3</span><span class="faq-question-text">苦味会扩散到整本书吗？</span>',
-  ".faq-list details:nth-child(3) p":
-    "只印在部分场景，干燥后会固定。根据纸张特性，邻近区域可能感受到轻微苦味。",
-  ".faq-list details:nth-child(4) summary":
-    '<span class="faq-number">Q4</span><span class="faq-question-text">体验贴纸怎么使用？</span>',
-  ".faq-list details:nth-child(4) p":
-    "多人共读时，请将附赠贴纸贴在相应场景，每次使用一张，更加卫生。",
-  ".faq-list details:nth-child(5) summary":
-    '<span class="faq-number">Q5</span><span class="faq-question-text">几岁开始适合使用？</span>',
-  ".faq-list details:nth-child(5) p":
-    "建议年龄为 3 岁以上。与家长一起阅读并轻轻体验，效果更好。",
-  ".faq-list details:nth-child(6) summary":
-    '<span class="faq-number">Q6</span><span class="faq-question-text">多次使用后苦味还会保留吗？</span>',
-  ".faq-list details:nth-child(6) p":
-    "水分和摩擦会让苦味逐渐减弱。需要再次体验时，可使用随书附赠的苦味贴纸。",
-  ".story-header .section-index": "03 / BITTER BOOKS 系列",
-  ".story-header h2": "感受、欢笑，<br />然后主动改变。",
-  ".story-header > p":
-    "Bitter Books 选择故事而非说教，选择体验而非强迫。来认识两本不同的感官故事书。",
-  ".book-card:nth-child(1) .story-label": "BITTER BOOKS 系列 01",
-  ".book-card:nth-child(1) .book-copy h3": "我的手指，Kong的脚趾",
-  ".book-card:nth-child(1) .book-copy > p:not(.story-label)":
-    "一本温暖观察孩子吸手指原因的绘本。书中的苦味体验帮助孩子亲自感受行为的结果，在不被责骂的情况下迈出停止习惯的第一步。",
-  ".book-card:nth-child(1) li:nth-child(1)": "适合 3 岁以上儿童及家长的感官绘本",
-  ".book-card:nth-child(1) li:nth-child(2)": "苦味体验设计与韩国儿童产品安全确认",
-  ".book-card:nth-child(2) .story-label": "BITTER BOOKS 系列 02",
-  ".book-card:nth-child(2) .book-copy h3": "伊诺姆老师",
-  ".book-card:nth-child(2) .book-copy > p:not(.story-label)":
-    "一本以幽默方式指出孩子日常不良行为的五感体验绘本。诙谐的老师故事和亲手体验的苦味贴纸，帮助孩子记住行为的原因与结果。",
-  ".book-card:nth-child(2) li:nth-child(1)": "通过有趣故事学习生活习惯",
-  ".book-card:nth-child(2) li:nth-child(2)": "附带可亲自体验的苦味贴纸",
-  ".book-buy": "前往 Coupang 购买 <span aria-hidden=\"true\">↗</span>",
-  ".book-store": "Naver 智慧商店 <span aria-hidden=\"true\">↗</span>",
-  ".buy-section .section-index": "04 / 购买渠道",
-  ".buy-section h2": "在您常用的网上商店<br />遇见 Bitter Books。",
-  ".store-links a:nth-child(1) strong": "购买《我的手指，Kong的脚趾》",
-  ".store-links a:nth-child(2) strong": "购买《伊诺姆老师》",
-  ".store-links a:nth-child(3) strong": "Bitter Books 官方商店",
-  ".social-intro .section-index": "05 / 关注故事",
-  ".social-intro h2": "第一时间了解<br />新书与故事的诞生过程。",
-  ".social-intro > p:last-child":
-    "在社交媒体查看绘本场景、制作幕后和适合亲子一起观看的短视频。",
-  ".instagram-card p": "了解绘本的制作过程与书中故事。",
-  ".youtube-card p": "与孩子一起观看有趣的 Bitter Books 视频。",
-  ".collaboration-intro .section-index": "06 / 联系我们",
-  ".collaboration-intro h2": "一起创造<br />全新的感官故事。",
-  ".collaboration-intro > p:last-child":
-    "Bitter Books 期待能让孩子日常体验更温柔、更难忘的合作与联名。",
-  ".collaboration-fields article:nth-child(1) h3": "出版与教育",
-  ".collaboration-fields article:nth-child(1) p":
-    "制作帮助行为调整并提升教育效果的图书、教具与贴纸。",
-  ".collaboration-fields article:nth-child(2) h3": "宠物市场",
-  ".collaboration-fields article:nth-child(2) p":
-    "开发用于行为引导及保护家具、电线的胶带与贴纸。",
-  ".collaboration-fields article:nth-child(3) h3": "包装与防护产品",
-  ".collaboration-fields article:nth-child(3) p":
-    "开发以儿童安全为核心的包装材料与防护产品。",
-  ".footer-brand p": "用感官学习，在故事中成长的书",
-  ".footer-info > p:nth-child(1)": "KUNMUK 株式会社 · 代表 卢贤敏",
-  ".footer-info > p:nth-child(2)": "营业执照号码 122-86-49985",
-  ".footer-info > p:nth-child(3)": "通信销售业申报编号 2025-용인기흥-02468",
-  ".footer-info > p:nth-child(4)": "出版社登记编号 2025-000099",
-  ".footer-info .footer-address":
-    "营业地址：韩国京畿道龙仁市器兴区东柏竹田大路444，6层 C608-D68号 JUNEVE（中洞）",
-};
-
-const japaneseCopy = {
-  ".ink-official h3": "BitterBooks の苦味印刷。<br />その技術を、もっと詳しく。",
-  ".ink-official-copy": "BitterBooks の絵本には、Kunmuk の技術ブランド BITTER INK を採用しています。苦味インクの仕組み、印刷・コーティングの開発、製品への活用事例を公式サイトでご覧いただけます。",
-  ".ink-official-tech": "BITTER INK の技術を知る（英語）↗",
-  ".ink-official-case": "BitterBooks の活用事例を見る（英語）↗",
-  ".site-nav a:nth-child(1)": "ビターブックスについて",
-  ".site-nav a:nth-child(2)": "刊行書籍",
-  ".site-nav a:nth-child(3)": "BitterINK ラボ",
-  ".site-nav a:nth-child(4)": "SNS",
-  ".header-buy": "購入する",
-  ".eyebrow": "言葉より先に、感覚へ届く物語",
-  ".hero h1": "子どもの習慣を、<br />物語に変えます。",
-  ".hero-description":
-    "叱ったり無理にやめさせたりするのではなく、子ども自身が感じて気づけるように。Bitter Books は特許技術 BitterINK と物語をつなぎ、新しい読書体験をつくります。",
-  ".button-primary": "Bitter Books を知る <span aria-hidden=\"true\">→</span>",
-  ".text-link": "購入先を見る <span aria-hidden=\"true\">↗</span>",
-  ".about-section .section-index": "01 / BITTER BOOKS について",
-  ".about-heading h2": "学びは、<br />五感から始まります。",
-  ".about-warm-note": "目で読み、指先で出会い、<br />心に長く残る物語",
-  ".about-lead > p:first-child":
-    "Bitter Books は、世界で初めて苦味インク BitterINK を教育・自己成長分野に取り入れた出版ブランドです。",
-  ".about-caption":
-    "読むだけで終わらず、体で感じ、長く記憶する新しい読書体験を提案します。",
-  ".about-detail-inner article:nth-child(1) span": "ひとつ",
-  ".about-detail-inner article:nth-child(1) h3": "五感から始まる学び",
-  ".about-detail-inner article:nth-child(1) p":
-    "「学びは五感から始まる」という考えのもと、感覚を使った学びで習慣を見つめ直し、成長の可能性を広げる本をつくります。",
-  ".about-detail-inner article:nth-child(2) span": "ふたつ",
-  ".about-detail-inner article:nth-child(2) h3": "体に残る記憶",
-  ".about-detail-inner article:nth-child(2) p":
-    "どれほど優れた教育も、体験がなければ忘れられがちです。Bitter Books は苦味の感覚を物語に加え、メッセージを実感し、長く覚えられるようにします。",
-  ".about-detail-inner article:nth-child(3) span": "みっつ",
-  ".about-detail-inner article:nth-child(3) h3": "行動が変わる小さなきっかけ",
-  ".about-detail-inner article:nth-child(3) p":
-    "Bitter Books のすべての本には BitterINK が使われています。子どもも大人も自ら感じ、考え、新しい行動を始める特別な体験を届けます。",
-  ".ink-intro .section-index": "02 / BITTERINK テクノロジー",
-  ".ink-kicker": "見て、触れて、感じる本",
-  ".ink-intro h2": "印刷に感覚を加えると、<br />物語は体験になります。",
-  ".ink-description":
-    "BitterINK は「苦味」という感覚刺激を印刷物に取り入れた独自の印刷技術です。英国 Veranova のプレミアム苦味原料と植物性大豆油インクを組み合わせ、見る・読むだけでなく、味覚を通じた認識と行動の変化を支えます。",
-  ".ink-story-window p":
-    "苦味は子どもを驚かせるためではありません。<br />物語のメッセージを体で覚えるための小さな感覚のきっかけです。",
-  ".ink-facts article:nth-child(1) h3": "特許取得済みの印刷技術",
-  ".ink-facts article:nth-child(1) p":
-    "韓国登録特許第 10-2761689 号で保護された苦味インク組成物と印刷技術です。",
-  ".ink-facts article:nth-child(2) h3": "子ども向け製品の安全試験",
-  ".ink-facts article:nth-child(2) p":
-    "Bitter Books の玩具は韓国の子ども向け製品共通安全基準試験を完了し、KOTITI 試験成績書を取得しています。",
-  ".ink-facts article:nth-child(3) h3": "多様な印刷方式",
-  ".ink-facts article:nth-child(3) p":
-    "紙用オフセットから UV 印刷、フィルムやシール向けグラビア印刷まで、用途と素材に合わせて展開できます。",
-  ".print-methods span:nth-child(1)": "OFFSET インク：書籍・教育ツール用",
-  ".print-methods span:nth-child(2)": "UV インク：プラスチック・非吸収素材用",
-  ".print-methods span:nth-child(3)": "グラビアインク：フィルム・ビニール用",
-  ".certificate-heading .section-index": "証明・認証",
-  ".certificate-heading h3": "技術を言葉だけで説明しません。",
-  ".certificate-heading > p": "画像を選ぶと原本を確認できます。",
-  ".certificate-card:nth-child(1) span": "韓国登録特許",
-  ".certificate-card:nth-child(1) strong": "第 10-2761689 号",
-  ".certificate-card:nth-child(2) span": "子ども向け製品の安全確認",
-  ".certificate-card:nth-child(2) strong": "KOTITI 試験成績書",
-  ".certificate-card:nth-child(3) span": "グローバル IP",
-  ".certificate-card:nth-child(3) strong": "米国特許出願",
-  ".faq-heading .section-index": "BITTERINK FAQ",
-  ".faq-heading h3": "一緒に読む前に、<br />気になることを確認しましょう。",
-  ".faq-heading > p:last-child": "質問を選ぶと短い回答が表示されます。",
-  ".soyink-note p":
-    "BitterINK 製品は植物性大豆油ベースの <strong>SoyINK 認証インク</strong>でつくられています。",
-  ".faq-list details:nth-child(1) summary":
-    '<span class="faq-number">Q1</span><span class="faq-question-text">この本の苦味インクは安全ですか？</span>',
-  ".faq-list details:nth-child(1) p":
-    "植物性 SoyINK と英国 Veranova のプレミアム苦味原料を使用し、子ども向け製品の安全試験を完了しています。",
-  ".faq-list details:nth-child(2) summary":
-    '<span class="faq-number">Q2</span><span class="faq-question-text">口に少し触れても大丈夫ですか？</span>',
-  ".faq-list details:nth-child(2) p":
-    "短時間の感覚体験を想定して設計されています。食品ではないため、指先や舌先で軽く体験してください。",
-  ".faq-list details:nth-child(3) summary":
-    '<span class="faq-number">Q3</span><span class="faq-question-text">苦味は本全体に広がりますか？</span>',
-  ".faq-list details:nth-child(3) p":
-    "一部の場面だけに印刷され、乾燥後に定着します。紙の特性により周辺でわずかな苦味を感じることがあります。",
-  ".faq-list details:nth-child(4) summary":
-    '<span class="faq-number">Q4</span><span class="faq-question-text">体験シールはどう使いますか？</span>',
-  ".faq-list details:nth-child(4) p":
-    "複数の子どもで読むときは、付属シールを該当場面に貼り、一枚ずつ衛生的に体験してください。",
-  ".faq-list details:nth-child(5) summary":
-    '<span class="faq-number">Q5</span><span class="faq-question-text">何歳から使えますか？</span>',
-  ".faq-list details:nth-child(5) p":
-    "推奨年齢は 3 歳以上です。保護者と一緒に読み、軽く体験するとより効果的です。",
-  ".faq-list details:nth-child(6) summary":
-    '<span class="faq-number">Q6</span><span class="faq-question-text">繰り返し使っても苦味は残りますか？</span>',
-  ".faq-list details:nth-child(6) p":
-    "水分や摩擦で苦味は少しずつ弱くなります。繰り返し体験するときは付属の苦味シールをご利用ください。",
-  ".story-header .section-index": "03 / BITTER BOOKS シリーズ",
-  ".story-header h2": "感じて、笑って、<br />自分から変わる物語",
-  ".story-header > p":
-    "Bitter Books は説教より物語を、強制より体験を選びます。二つの異なる感覚の物語に出会ってください。",
-  ".book-card:nth-child(1) .story-label": "BITTER BOOKS シリーズ 01",
-  ".book-card:nth-child(1) .book-copy h3": "わたしの指、コンの足の指",
-  ".book-card:nth-child(1) .book-copy > p:not(.story-label)":
-    "指しゃぶりをする子どもの気持ちをあたたかく見つめる絵本です。本の中の苦味体験を通して行動の結果を自ら感じ、叱られなくてもやめるための第一歩を応援します。",
-  ".book-card:nth-child(1) li:nth-child(1)": "3 歳以上の子どもと保護者のための感覚絵本",
-  ".book-card:nth-child(1) li:nth-child(2)": "苦味体験要素と韓国の子ども向け製品安全確認",
-  ".book-card:nth-child(2) .story-label": "BITTER BOOKS シリーズ 02",
-  ".book-card:nth-child(2) .book-copy h3": "イノム先生",
-  ".book-card:nth-child(2) .book-copy > p:not(.story-label)":
-    "日常のよくない行動を楽しく伝える五感体験型の絵本です。愉快な先生の物語と実際に触れる苦味シールが、行動の原因と結果を記憶に残します。",
-  ".book-card:nth-child(2) li:nth-child(1)": "楽しい物語で学ぶ生活習慣",
-  ".book-card:nth-child(2) li:nth-child(2)": "実際に体験できる苦味シール付き",
-  ".book-buy": "Coupang で購入 <span aria-hidden=\"true\">↗</span>",
-  ".book-store": "Naver スマートストア <span aria-hidden=\"true\">↗</span>",
-  ".buy-section .section-index": "04 / 購入先",
-  ".buy-section h2": "いつものオンラインストアで<br />Bitter Books に出会えます。",
-  ".store-links a:nth-child(1) strong": "『わたしの指、コンの足の指』を購入",
-  ".store-links a:nth-child(2) strong": "『イノム先生』を購入",
-  ".store-links a:nth-child(3) strong": "Bitter Books 公式ストア",
-  ".social-intro .section-index": "05 / 物語をフォロー",
-  ".social-intro h2": "本が生まれる瞬間と<br />次の物語をいち早く。",
-  ".social-intro > p:last-child":
-    "絵本の場面、制作の舞台裏、親子で楽しめる短い動画を SNS でお届けします。",
-  ".instagram-card p": "絵本の制作過程と本の中の物語をご覧ください。",
-  ".youtube-card p": "お子さまと一緒に楽しめる Bitter Books の動画をご覧ください。",
-  ".collaboration-intro .section-index": "06 / お問い合わせ",
-  ".collaboration-intro h2": "新しい感覚の物語を<br />一緒につくりませんか。",
-  ".collaboration-intro > p:last-child":
-    "Bitter Books は、子どもの日常体験をよりやさしく、心に残るものにする協業・提携をお待ちしています。",
-  ".collaboration-fields article:nth-child(1) h3": "出版・教育分野",
-  ".collaboration-fields article:nth-child(1) p":
-    "行動の見直しと教育効果を高める本、教材、シールの制作。",
-  ".collaboration-fields article:nth-child(2) h3": "ペット市場",
-  ".collaboration-fields article:nth-child(2) p":
-    "行動サポートや家具・電線保護のためのテープとシールの開発。",
-  ".collaboration-fields article:nth-child(3) h3": "包装・保護製品",
-  ".collaboration-fields article:nth-child(3) p":
-    "子どもの安全を考えた包装材と保護製品の開発。",
-  ".footer-brand p": "感覚で学び、物語で育つ本",
-  ".footer-info > p:nth-child(1)": "株式会社 KUNMUK・代表 ノ・ヒョンミン",
-  ".footer-info > p:nth-child(2)": "事業者登録番号 122-86-49985",
-  ".footer-info > p:nth-child(3)": "通信販売業届出番号 2025-용인기흥-02468",
-  ".footer-info > p:nth-child(4)": "出版社届出番号 2025-000099",
-  ".footer-info .footer-address":
-    "事業所住所：韓国 京畿道龍仁市器興区東柏竹田大路444、6階 C608-D68号 JUNEVE（中洞）",
-};
-
-const languageCopies = {
-  en: englishCopy,
-  zh: chineseCopy,
-  ja: japaneseCopy,
-};
-
-const languageSettings = {
+const translations = {
   ko: {
-    label: "한국어",
-    flag: "./assets/flags/kr.svg",
-    title: "비터북스(BitterBooks) | 감각으로 배우는 그림책",
-    ariaLabel: "언어 변경",
+    label: '한국어', flag: '🇰🇷', navAbout: '비터북스 소개', navBooks: '출간 도서', navLab: '쓴맛 연구소', navSns: 'SNS',
+    heroTitle: '읽는 순간,<br><em>이야기가 살아나요.</em>', heroSub: '손끝으로 느끼고, 마음으로 오래 기억하는 감각 동화책', meetBooks: '책 만나보기', ourStory: '비터북스 이야기', bubbleLeft: '우리, 책 속에서 만나자!', bubbleRight: '좋은 이야기는 언제나 발견할 수 있지!',
+    booksTitle: '오늘은 어떤 이야기를 만나볼까요?', booksIntro: '아이의 상상력과 감각을 깨우는 비터북스의 이야기를 만나보세요.', book1Title: '내 손가락<br>콩이 발가락', book1Desc: '손가락을 빠는 아이의 마음을 따뜻하게 들여다보는 세계 최초 쓴맛 동화책입니다.', book2Title: '이놈<br>선생님', book2Desc: '아이의 생활 습관을 유쾌한 이야기와 체험형 쓴맛 스티커로 만나보세요.', details: '자세히 보기',
+    aboutTitle: '감각으로 배우고,<br>이야기로 자랍니다.', aboutDesc: '비터북스는 훈계보다 이야기를, 강요보다 경험을 선택합니다. 아이가 스스로 느끼고 생각하며 작은 행동의 변화를 시작하도록 돕습니다.', senseTitle: '오감으로 시작하는 배움', senseDesc: '보고, 만지고, 느끼는 독서 경험으로 아이의 호기심을 깨웁니다.', memoryTitle: '몸으로 남는 기억', memoryDesc: '이야기와 감각이 만나 교육적 메시지를 오래 기억하게 합니다.', changeTitle: '행동의 작은 전환점', changeDesc: '혼내지 않아도 아이가 스스로 느끼고 선택하는 계기를 만듭니다.',
+    labTitle: '쓴맛을 더하면,<br>이야기는 경험이 됩니다.', labDesc: '특허받은 BitterINK 기술은 식물성 콩기름 기반 Soy Ink와 쓴맛 원료를 결합해 책의 메시지를 감각으로 기억하게 합니다.', labLink: '비터잉크 기술 알아보기', trustTitle: '안심하고<br>만날 수 있는 책', trustDesc: '아이와 함께 읽는 순간을 생각하며 재료부터 인쇄까지 꼼꼼하게 만듭니다.',
+    faqTitle: '아이와 함께 읽기 전,<br>궁금한 점을 확인해보세요.', q1: '이 책의 쓴맛 잉크는 안전한가요?', a1: '식물성 콩기름 기반 Soy Ink와 프리미엄 쓴맛 원료를 사용하며 어린이제품 안전 시험을 완료했습니다.', q2: '아이의 입에 닿아도 괜찮나요?', a2: '입에 살짝 닿는 체험을 고려해 설계했지만 먹는 제품은 아닙니다. 보호자와 함께 가볍게 체험해 주세요.', q3: '쓴맛이 책 전체로 번지나요?', a3: '일부 장면에만 인쇄되고 건조 후 고정됩니다. 종이 특성에 따라 주변에서 미세한 쓴맛이 느껴질 수 있습니다.', q4: '체험 스티커는 어떻게 사용하나요?', a4: '여러 아이가 함께 읽을 때 해당 장면에 부록 스티커를 붙여 한 장씩 위생적으로 체험해 주세요.', q5: '몇 살부터 사용할 수 있나요?', a5: '권장 연령은 만 3세 이상입니다. 보호자와 함께 읽으며 체험하면 더욱 좋습니다.', q6: '여러 번 사용해도 쓴맛이 유지되나요?', a6: '물기와 마찰로 점차 약해질 수 있습니다. 반복 체험에는 함께 제공된 쓴맛 스티커를 활용해 주세요.',
+    buyTitle: '비터북스의 이야기를<br>온라인에서 만나보세요.', buy1: '내 손가락 콩이 발가락 구매하기', buy2: '이놈 선생님 구매하기', officialStore: '비터북스 공식 스토어', socialTitle: '책이 만들어지는 순간과<br>다음 이야기를 만나보세요.', collab: '협업·제휴 문의', footerTag: '감각으로 배우고, 이야기로 자라는 책'
   },
   en: {
-    label: "English",
-    flag: "./assets/flags/us.svg",
-    title: "Bitter Books | Stories Learned Through the Senses",
-    ariaLabel: "Change language",
+    label: 'English', flag: '🇺🇸', navAbout: 'About', navBooks: 'Books', navLab: 'BitterINK Lab', navSns: 'Social',
+    heroTitle: 'Open a book,<br><em>and stories come alive.</em>', heroSub: 'Sensory picture books felt by hand and remembered by heart', meetBooks: 'Meet the books', ourStory: 'Our story', bubbleLeft: 'Meet us inside the book!', bubbleRight: 'A good story is always worth discovering!',
+    booksTitle: 'Which story shall we meet today?', booksIntro: 'Discover stories that awaken imagination and the senses.', book1Title: 'My Finger,<br>Kong’s Toe', book1Desc: 'A warm sensory story about a child, her habit, and her fluffy friend Kong.', book2Title: 'Mr. Inom', book2Desc: 'A playful story about everyday habits with an interactive bitter-taste sticker.', details: 'View details',
+    aboutTitle: 'Learn through senses,<br>grow through stories.', aboutDesc: 'BitterBooks chooses stories over scolding and experience over pressure, helping children feel, think, and begin a small change.', senseTitle: 'Learning with all five senses', senseDesc: 'Seeing, touching and feeling awaken a child’s curiosity.', memoryTitle: 'Memories the body keeps', memoryDesc: 'Story and sensation help meaningful messages stay longer.', changeTitle: 'A small turning point', changeDesc: 'Children get a chance to feel and choose for themselves.',
+    labTitle: 'Add a bitter sensation,<br>and a story becomes an experience.', labDesc: 'Patented BitterINK combines plant-based Soy Ink with a premium bitter ingredient to make a book’s message memorable.', labLink: 'Explore BitterINK', trustTitle: 'Books you can<br>meet with confidence', trustDesc: 'Every detail, from materials to printing, is considered for shared reading.',
+    faqTitle: 'Before reading together,<br>here are the answers.', q1: 'Is the bitter ink safe?', a1: 'We use plant-based Soy Ink and a premium bitter ingredient and have completed children’s product safety testing.', q2: 'Is brief mouth contact okay?', a2: 'It is designed for a light sensory experience but is not food. Experience it lightly with a guardian.', q3: 'Does the bitter taste spread?', a3: 'It is printed only on selected scenes and fixed after drying.', q4: 'How do we use the experience stickers?', a4: 'Attach a supplement sticker to the scene so several children can experience it hygienically.', q5: 'What age is it for?', a5: 'Recommended for ages three and up with a guardian.', q6: 'Does the taste last?', a6: 'Moisture and friction can weaken it. Use the included stickers for repeated experiences.',
+    buyTitle: 'Meet BitterBooks<br>online.', buy1: 'Buy My Finger, Kong’s Toe', buy2: 'Buy Mr. Inom', officialStore: 'Official BitterBooks Store', socialTitle: 'See how our books are made<br>and meet the next story.', collab: 'Partnerships', footerTag: 'Books that teach through senses and grow through stories'
   },
   zh: {
-    label: "中文",
-    flag: "./assets/flags/cn.svg",
-    title: "Bitter Books | 用感官学习的故事",
-    ariaLabel: "切换语言",
+    label: '中文', flag: '🇨🇳', navAbout: '关于我们', navBooks: '出版图书', navLab: '苦味研究所', navSns: '社交媒体',
+    heroTitle: '翻开书的瞬间，<br><em>故事鲜活起来。</em>', heroSub: '用指尖感受、在心中长久留存的感官绘本', meetBooks: '认识图书', ourStory: '品牌故事', bubbleLeft: '在书里见吧！', bubbleRight: '好故事总值得发现！', booksTitle: '今天想遇见哪个故事？', booksIntro: '唤醒孩子想象力与感官的故事。', book1Title: '我的手指，<br>Kong的脚趾', book1Desc: '温柔理解孩子习惯与内心的感官绘本。', book2Title: 'Inom老师', book2Desc: '以有趣故事和体验贴纸认识日常生活习惯。', details: '查看详情',
+    aboutTitle: '用感官学习，<br>在故事中成长。', aboutDesc: '比起训斥，我们选择故事；比起强迫，我们选择体验。', senseTitle: '从五感开始学习', senseDesc: '看、摸、感受，唤醒孩子的好奇心。', memoryTitle: '留在身体里的记忆', memoryDesc: '故事与感官相遇，让信息留存更久。', changeTitle: '行动的小小转折', changeDesc: '给孩子自己感受和选择的机会。', labTitle: '加入苦味，<br>故事成为体验。', labDesc: '专利BitterINK将植物性Soy Ink与优质苦味原料结合。', labLink: '了解BitterINK', trustTitle: '可以安心<br>相遇的书', trustDesc: '从材料到印刷，都为亲子共读细心制作。', faqTitle: '亲子共读之前，<br>先看看常见问题。', q1: '这本书的苦味墨水安全吗？', a1: '采用植物性Soy Ink和优质苦味原料，并已完成儿童产品安全测试。', q2: '短暂接触口腔可以吗？', a2: '产品考虑了轻微感官体验，但并非食品，请在监护人陪同下轻轻体验。', q3: '苦味会扩散到整本书吗？', a3: '只印刷在部分画面上，干燥后固定。', q4: '体验贴纸如何使用？', a4: '多人共读时，可将附赠贴纸贴在相应画面上，卫生地逐张体验。', q5: '几岁可以使用？', a5: '建议三岁以上儿童在监护人陪同下阅读体验。', q6: '苦味可以保持多久？', a6: '水分和摩擦会使苦味逐渐减弱，需要重复体验时请使用附赠贴纸。', buyTitle: '在线认识<br>比特图书。', buy1: '购买《我的手指，Kong的脚趾》', buy2: '购买《Inom老师》', officialStore: '比特图书官方商店', socialTitle: '认识图书诞生的瞬间<br>与下一个故事。', collab: '合作咨询', footerTag: '用感官学习，在故事中成长的书'
   },
   ja: {
-    label: "日本語",
-    flag: "./assets/flags/jp.svg",
-    title: "Bitter Books | 五感で学ぶ物語",
-    ariaLabel: "言語を変更",
-  },
+    label: '日本語', flag: '🇯🇵', navAbout: 'ビターブックス紹介', navBooks: '出版書籍', navLab: '苦味研究所', navSns: 'SNS',
+    heroTitle: '本を開く瞬間、<br><em>物語が動き出す。</em>', heroSub: '指先で感じ、心に長く残る感覚絵本', meetBooks: '本を見る', ourStory: '私たちの物語', bubbleLeft: '本の中で会おう！', bubbleRight: '良い物語はいつでも発見できるよ！', booksTitle: '今日はどの物語に会いますか？', booksIntro: '子どもの想像力と感覚を目覚めさせる物語。', book1Title: 'わたしの指、<br>コンの足の指', book1Desc: '子どもの習慣と心をやさしく見つめる感覚絵本です。', book2Title: 'イノム先生', book2Desc: '楽しい物語と体験ステッカーで生活習慣を学びます。', details: '詳しく見る',
+    aboutTitle: '感覚で学び、<br>物語で育ちます。', aboutDesc: '叱るより物語を、強制より体験を選びます。', senseTitle: '五感から始まる学び', senseDesc: '見て、触れて、感じる読書体験が好奇心を育てます。', memoryTitle: '身体に残る記憶', memoryDesc: '物語と感覚が大切なメッセージを長く残します。', changeTitle: '行動の小さな転換点', changeDesc: '自分で感じ、選ぶきっかけをつくります。', labTitle: '苦味を加えると、<br>物語は体験になります。', labDesc: '特許BitterINKは植物性Soy Inkと上質な苦味原料を組み合わせています。', labLink: 'BitterINKを見る', trustTitle: '安心して<br>出会える本', trustDesc: '親子で読む時間を考え、素材から印刷まで丁寧につくります。', faqTitle: '一緒に読む前に、<br>気になることを確認。', q1: 'この本の苦味インクは安全ですか？', a1: '植物性Soy Inkと上質な苦味原料を使用し、子ども向け製品の安全試験を完了しています。', q2: '口に少し触れても大丈夫ですか？', a2: '軽い感覚体験を考慮していますが食品ではありません。保護者と一緒に体験してください。', q3: '苦味は本全体に広がりますか？', a3: '一部の場面だけに印刷され、乾燥後に固定されます。', q4: '体験ステッカーはどう使いますか？', a4: '複数の子どもが読むときは、付属ステッカーを該当場面に貼り、一枚ずつ衛生的に体験してください。', q5: '何歳から使えますか？', a5: '推奨年齢は3歳以上です。保護者と一緒に読んでください。', q6: '苦味は何度でも続きますか？', a6: '水分や摩擦で少しずつ弱くなります。繰り返す場合は付属ステッカーをご利用ください。', buyTitle: 'オンラインで<br>ビターブックスに出会う。', buy1: '「わたしの指、コンの足の指」を購入', buy2: '「イノム先生」を購入', officialStore: 'ビターブックス公式ストア', socialTitle: '本が生まれる瞬間と<br>次の物語に会いましょう。', collab: 'コラボ・提携', footerTag: '感覚で学び、物語で育つ本'
+  }
 };
 
-const translatableNodes = new Map();
-
-Object.keys(englishCopy).forEach((selector) => {
-  const nodes = [...document.querySelectorAll(selector)];
-  translatableNodes.set(
-    selector,
-    nodes.map((node) => ({ node, korean: node.innerHTML })),
-  );
-});
-
-function setLanguage(language) {
-  const normalizedLanguage = languageSettings[language] ? language : "ko";
-  const copy = languageCopies[normalizedLanguage];
-  const settings = languageSettings[normalizedLanguage];
-
-  translatableNodes.forEach((items, selector) => {
-    items.forEach(({ node, korean }) => {
-      node.innerHTML = copy ? copy[selector] : korean;
-    });
+function applyLanguage(lang) {
+  const dictionary = translations[lang] || translations.ko;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  $$('[data-i18n]').forEach(element => {
+    const value = dictionary[element.dataset.i18n];
+    if (value) element.innerHTML = value;
   });
+  $('.current-lang').textContent = dictionary.label;
+  $('.flag').textContent = dictionary.flag;
+  $$('.language-menu button').forEach(button => button.setAttribute('aria-selected', String(button.dataset.lang === lang)));
+  localStorage.setItem('bitterbooks-language', lang);
+  language.classList.remove('open');
+  languageButton.setAttribute('aria-expanded', 'false');
+}
 
-  const inkBase = "https://www.bitterink.com" + (normalizedLanguage === "ko" ? "" : "/en");
-  document.querySelector(".ink-official-tech")?.setAttribute("href", inkBase + "/technology/");
-  document.querySelector(".ink-official-case")?.setAttribute("href", inkBase + "/applications/#bitterbooks");
+$$('.language-menu button').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
+applyLanguage(localStorage.getItem('bitterbooks-language') || 'ko');
 
-  document.documentElement.lang = normalizedLanguage;
-  document.title = settings.title;
-  currentLanguage.textContent = settings.label;
-  currentLanguageFlag.src = settings.flag;
-  languageToggle.setAttribute("aria-label", settings.ariaLabel);
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+}), { threshold: 0.12 });
+$$('.reveal').forEach(element => observer.observe(element));
+
+const bookData = {
+  book1: {
+    series: 'SERIES 01', title: '내 손가락 콩이 발가락', cover: 'assets/book1-cover.webp', link: 'https://link.coupang.com/a/fGI7WNKH3A',
+    description: '손가락을 빠는 아이의 마음을 따뜻하게 들여다보는 그림책입니다. 책 속 쓴맛 체험을 통해 아이가 행동의 결과를 직접 느끼고 스스로 멈추는 첫걸음을 응원합니다.',
+    features: ['3세 이상 어린이와 보호자를 위한 감각 그림책', '쓴맛 체험 요소와 KC 안전확인']
+  },
+  book2: {
+    series: 'SERIES 02', title: '이놈 선생님', cover: 'assets/book2-cover.webp', link: 'https://link.coupang.com/a/fGJbAqRVq8',
+    description: '아이가 일상에서 만나는 여러 잘못된 행동을 유쾌하게 짚어주는 오감 체험형 동화책입니다. 익살스러운 이야기와 쓴맛 스티커가 행동의 원인과 결과를 기억하게 합니다.',
+    features: ['재미있는 이야기로 배우는 생활 습관', '직접 체험하는 쓴맛 스티커 포함']
+  }
+};
+
+const dialog = $('#book-dialog');
+$$('.card-button').forEach(button => button.addEventListener('click', () => {
+  const book = bookData[button.dataset.book];
+  $('#dialog-series').textContent = book.series;
+  $('#dialog-title').textContent = book.title;
+  $('#dialog-cover').src = book.cover;
+  $('#dialog-cover').alt = `${book.title} 표지`;
+  $('#dialog-description').textContent = book.description;
+  $('#dialog-features').innerHTML = book.features.map(item => `<li>${item}</li>`).join('');
+  $('#dialog-coupang').href = book.link;
+  dialog.showModal();
+}));
+$('.dialog-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+
+async function updateVisitorCount() {
   try {
-    localStorage.setItem("bitterbooks-language", normalizedLanguage);
-  } catch {
-    // The language switch still works when browser storage is unavailable.
+    const response = await fetch('https://icount.kr/api.php?id=bitterbooks.com', { cache: 'no-store' });
+    if (!response.ok) throw new Error('counter unavailable');
+    const data = await response.json();
+    $('#visitor-count').textContent = `TODAY ${Number(data.today.pv).toLocaleString()} · TOTAL ${Number(data.total.pv).toLocaleString()}`;
+  } catch (_) {
+    $('#visitor-count').textContent = 'TODAY – · TOTAL –';
   }
 }
-
-function closeLanguageMenu() {
-  languageToggle?.setAttribute("aria-expanded", "false");
-  if (languageMenu) languageMenu.hidden = true;
-}
-
-languageToggle?.addEventListener("click", () => {
-  const willOpen = languageToggle.getAttribute("aria-expanded") !== "true";
-  if (willOpen) setMenu(false);
-  languageToggle.setAttribute("aria-expanded", String(willOpen));
-  languageMenu.hidden = !willOpen;
-});
-
-languageMenu?.querySelectorAll("[data-language]").forEach((button) => {
-  button.addEventListener("click", () => {
-    setLanguage(button.dataset.language);
-    closeLanguageMenu();
-  });
-});
-
-document.addEventListener("click", (event) => {
-  if (!event.target.closest(".language-switcher")) closeLanguageMenu();
-});
-
-let savedLanguage;
-try {
-  savedLanguage = localStorage.getItem("bitterbooks-language");
-} catch {
-  savedLanguage = null;
-}
-if (languageSettings[savedLanguage]) setLanguage(savedLanguage);
-
-function loadVisitorCounter() {
-  const todayCounter = document.querySelector('[data-icount="today"]');
-  const totalCounter = document.querySelector('[data-icount="total"]');
-  if (!todayCounter || !totalCounter) return;
-
-  const trackingScript = document.createElement("script");
-  const trackingParams = new URLSearchParams({
-    id: "bitterbooks.com",
-    url: window.location.href,
-    ref: document.referrer,
-    t: String(Date.now()),
-  });
-
-  trackingScript.src = `https://icount.kr/count.php?${trackingParams.toString()}`;
-  trackingScript.async = true;
-  trackingScript.dataset.visitorCounter = "true";
-  document.head.appendChild(trackingScript);
-}
-
-loadVisitorCounter();
+window.addEventListener('load', updateVisitorCount, { once: true });
