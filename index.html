@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="responsive-v2.css">
+  <link rel="stylesheet" href="responsive-review1.css?v=20261022-review1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"비터북스","alternateName":"Bitter Books","url":"https://www.bitterbooks.com/","sameAs":["https://www.instagram.com/bitterbooks2025/","https://www.youtube.com/@BitterBooks/"]}</script>
 </head>
 <body>
@@ -29,7 +29,7 @@
       <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
         <a href="#about" data-t="navAbout">비터북스 소개</a>
         <a href="#books" data-t="navBooks">출간 도서</a>
-        <a href="#lab" data-t="navLab">쓴맛 연구소</a>
+        <button class="nav-button" type="button" data-open="lab" data-t="navLab">쓴맛 연구소</button>
         <a href="#social" data-t="navSocial">SNS</a>
       </nav>
       <div class="header-tools">
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="hero-character teacher">
-          <span class="speech" data-t="bubbleTeacher">좋은 이야기는 언제나<br>발견할 수 있지!</span>
+          <span class="speech" data-t="bubbleTeacher">어떤 이야기인지<br>함께 들여다볼까?</span>
           <img class="character-image" src="assets/teacher-cutout.webp" width="850" height="1133" alt="돋보기를 든 이놈 선생님과 동물 친구들">
         </div>
       </div>
@@ -97,14 +97,14 @@
       </div>
     </section>
 
-    <section class="info-grid container" id="about" aria-label="비터북스의 생각">
+    <section class="info-grid container" aria-label="비터북스의 생각">
       <article class="info-card lab-card" id="lab">
         <div class="info-copy">
           <h2 data-t="labTitle">쓴맛 연구소</h2>
           <p data-t="labDesc">아이의 더 건강한 성장을 위한<br>비터북스의 특별한 생각과 이야기</p>
-          <a class="button secondary" href="https://www.bitterink.com/" target="_blank" rel="noopener"><span data-t="details">자세히 보기</span><span aria-hidden="true">→</span></a>
+          <button class="button secondary" type="button" data-open="lab"><span data-t="details">자세히 보기</span><span aria-hidden="true">→</span></button>
         </div>
-        <span class="art lab-art" style="--x:300;--y:1054;--w:248;--h:242"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="좋은 이야기가 더 나은 내일을 만듭니다. 펼쳐진 책과 새싹 그림" loading="lazy"></span>
+        <img class="info-illustration lab-illustration" src="assets/lab-visual.webp" width="1536" height="1024" alt="펼쳐진 그림책과 돋보기, 새싹과 쓴맛 잉크" loading="lazy">
       </article>
       <article class="info-card trust-card">
         <div class="info-copy">
@@ -113,12 +113,31 @@
           <div class="trust-labels"><span>MADE IN KOREA</span><span>Soy Ink</span></div>
           <button class="text-button" type="button" data-open="faq" data-t="faqLink">안전·사용 안내 보기 →</button>
         </div>
-        <span class="art tree-art" style="--x:795;--y:1068;--w:201;--h:224"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="아이의 오늘이 더 빛나도록 좋은 이야기를 만듭니다. 나무 그림" loading="lazy"></span>
+        <img class="info-illustration trust-illustration" src="assets/trust-visual.webp" width="1254" height="1254" alt="책 위에서 건강하게 자라는 새싹과 꽃밭" loading="lazy">
       </article>
+    </section>
+
+    <section class="brand-story container" id="about" aria-labelledby="about-title">
+      <p class="eyebrow">ABOUT BITTER BOOKS</p>
+      <h2 id="about-title" data-t="aboutTitle">배움은 오감에서 시작됩니다.</h2>
+      <p class="section-lead" data-t="aboutLead">혼내고 억지로 막기보다, 아이가 스스로 느끼고 알아가도록.<br>비터북스는 이야기와 쓴맛 인쇄 기술 BitterINK를 연결하는 출판 브랜드입니다.</p>
+      <div class="values-grid" data-t="aboutValues">
+        <article><span>01 / FEEL</span><h3>감각으로 만나는 이야기</h3><p>눈으로 읽고, 손끝으로 만나고, 특별한 쓴맛 체험으로 이야기 속 메시지를 느낍니다.</p></article>
+        <article><span>02 / THINK</span><h3>마음에 오래 남는 경험</h3><p>아이의 행동 뒤에 있는 마음을 먼저 들여다봅니다. 보호자와 함께 읽고 대화하며 스스로 생각할 시간을 전합니다.</p></article>
+        <article><span>03 / GROW</span><h3>작은 변화를 응원하는 책</h3><p>정답을 강요하기보다 새로운 행동을 시작할 작은 계기를 만듭니다. 어린이의 오늘이 더 빛나는 이야기를 만들어갑니다.</p></article>
+      </div>
+    </section>
+
+    <section class="video-section container" id="social" aria-labelledby="video-title">
+      <div class="section-heading"><p class="eyebrow">WATCH &amp; PLAY</p><h2 id="video-title" data-t="videoTitle">책 밖에서도, 이야기는 계속돼요!</h2><p data-t="videoLead">아이와 함께 볼 영상부터 짧고 재미있는 릴스까지 만나보세요.</p></div>
+      <div class="video-grid">
+        <a class="video-card youtube" href="https://www.youtube.com/@BitterBooks/" target="_blank" rel="noopener"><span class="channel-badge">YouTube</span><img src="assets/teacher-cutout.webp" width="850" height="1133" alt="" loading="lazy"><div class="video-copy"><h3 data-t="youtubeTitle">움직이는 이야기, 함께 볼까요?</h3><p data-t="youtubeDesc">비터북스 친구들을 영상으로 만나보세요.</p><span class="button primary" data-t="youtubeCta">유튜브 영상 보러 가기 ↗</span></div></a>
+        <a class="video-card reels" href="https://www.instagram.com/bitterbooks2025/reels/" target="_blank" rel="noopener"><span class="channel-badge">Instagram Reels</span><img src="assets/girl-dog-cutout.webp" width="850" height="1133" alt="" loading="lazy"><div class="video-copy"><h3 data-t="reelsTitle">잠깐의 즐거움, 릴스 한 편!</h3><p data-t="reelsDesc">책 속 장면과 비터북스의 소식을 짧게 즐겨요.</p><span class="button secondary" data-t="reelsCta">인스타그램 릴스 보러 가기 ↗</span></div></a>
+      </div>
     </section>
   </main>
 
-  <footer class="site-footer" id="social">
+  <footer class="site-footer">
     <div class="footer-inner container">
       <div class="footer-brand">
         <a class="brand" href="#top" aria-label="비터북스 홈"><strong>BITTER BOOKS</strong></a>
@@ -131,7 +150,7 @@
       </div>
       <span class="art footer-scene" style="--x:280;--y:1320;--w:470;--h:216"><img src="assets/bitterbooks-landing-exact.jpg" width="1024" height="1536" alt="함께 앉아 풍경을 바라보는 비터북스 친구들" loading="lazy"></span>
       <nav class="footer-nav" aria-label="하단 메뉴">
-        <a href="#about" data-t="navAbout">비터북스 소개</a><a href="#books" data-t="navBooks">출간 도서</a><a href="#lab" data-t="navLab">쓴맛 연구소</a><a href="mailto:bitterbooks@naver.com" data-t="contact">문의하기</a>
+        <a href="#about" data-t="navAbout">비터북스 소개</a><a href="#books" data-t="navBooks">출간 도서</a><button class="nav-button" type="button" data-open="lab" data-t="navLab">쓴맛 연구소</button><button class="nav-button" type="button" data-open="contact" data-t="contact">문의하기</button>
       </nav>
     </div>
     <div class="company container">
@@ -147,17 +166,39 @@
     <div class="book-dialog-layout">
       <img id="dialog-cover" src="assets/book1-cover.webp" alt="" width="300" height="370">
       <div><p id="dialog-series" class="dialog-kicker"></p><h2 id="dialog-title"></h2><p id="dialog-description"></p><p class="age-note" data-t="ageNote">만 3세 이상 · 보호자와 함께 읽어주세요.</p>
-        <div class="purchase-links"><a id="dialog-coupang" class="button primary" target="_blank" rel="noopener" data-t="buyCoupang">쿠팡에서 구매하기</a><a class="button secondary" href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener" data-t="buyNaver">네이버 스토어</a></div>
       </div>
     </div>
+    <div id="book-editorial" class="editorial"></div>
+    <button class="button primary" id="show-purchase" type="button" aria-expanded="false" aria-controls="purchase-panel" data-t="showPurchase">구매처 보기 ↓</button>
+    <section id="purchase-panel" class="purchase-panel" hidden aria-labelledby="purchase-title"><h3 id="purchase-title" tabindex="-1" data-t="purchaseTitle">어디에서 만나볼까요?</h3><p data-t="purchaseDesc">원하시는 구매처를 선택하면 해당 스토어로 이동합니다.</p><div class="purchase-links"><a id="dialog-coupang" class="button primary" target="_blank" rel="noopener" data-t="buyCoupang">쿠팡에서 구매하기</a><a class="button secondary" href="https://smartstore.naver.com/bittercare-bitterbooks" target="_blank" rel="noopener" data-t="buyNaver">네이버 스토어</a></div></section>
   </dialog>
   <dialog id="faq-dialog" class="dialog faq-dialog" aria-labelledby="faq-title">
     <button class="close-button" type="button" data-close data-t="close">닫기</button>
     <h2 id="faq-title" data-t="faqTitle">아이와 함께 읽기 전, 확인해 주세요.</h2>
-    <details><summary data-t="q1">쓴맛 체험은 어떻게 하나요?</summary><p data-t="a1">식용 제품이 아닙니다. 보호자와 함께 책에 안내된 부위에서 가볍게 체험하고, 아이에게 억지로 체험을 강요하지 마세요.</p></details>
-    <details><summary data-t="q2">몇 살부터 읽을 수 있나요?</summary><p data-t="a2">권장 연령은 만 3세 이상입니다. 보호자와 함께 이야기를 읽고 사용 안내를 확인해 주세요.</p></details>
-    <details><summary data-t="q3">궁금한 점은 어디로 문의하나요?</summary><p><a href="mailto:bitterbooks@naver.com">bitterbooks@naver.com</a></p></details>
+    <div data-t="safetyContent">
+      <p class="section-lead">함께 읽고, 가볍게 느끼고, 충분히 이야기해 주세요. 쓴맛 체험보다 아이가 이야기를 즐기는 마음이 먼저입니다.</p>
+      <div class="guide-note"><strong>만 3세 이상 · 보호자와 함께 · 식용 제품이 아닙니다</strong><p>책과 부록에 표시된 사용 방법을 먼저 확인해 주세요. 체험은 아이가 원할 때만 진행하고, 억지로 반복하거나 벌을 주는 방식으로 사용하지 마세요.</p></div>
+      <details open><summary>01. 이 책의 쓴맛 잉크는 어떤 재료로 만드나요?</summary><p>식물성 콩기름 기반 SoyINK와 영국 Veranova의 쓴맛 원료를 사용합니다. 기존 홈페이지에 안내된 어린이제품 공통안전기준 시험과 KOTITI 시험성적서를 아래 자료에서 확인하실 수 있습니다. 시험 자료는 해당 제품과 시험 항목에 관한 자료이며, 책이나 스티커가 식품이라는 뜻은 아닙니다.</p></details>
+      <details><summary>02. 아이의 입에 닿는 체험은 어떻게 하나요?</summary><p>책에 안내된 부위에서 보호자와 함께 손끝이나 혀끝에 살짝 닿는 정도로 체험하도록 설계했습니다. 책을 씹거나 종이·스티커·잉크를 먹는 용도로 사용하지 마세요. 아이가 불편해하거나 원하지 않으면 체험을 중단하고 이야기만 읽어도 좋습니다.</p></details>
+      <details><summary>03. 쓴맛이 책 전체로 번지나요?</summary><p>쓴맛은 일부 장면에만 인쇄되며 건조 후 고정됩니다. 종이 특성에 따라 주변에서 미세한 쓴맛이 느껴질 수 있습니다. 책을 젖게 하거나 체험 부위를 과도하게 문지르지 마세요.</p></details>
+      <details><summary>04. 부록 체험 스티커는 어떻게 사용하나요?</summary><p>책의 안내에 따라 해당 장면에 부록 스티커를 붙여 사용해 주세요. 여러 아이가 함께 읽을 때에는 각자 체험할 수 있도록 한 장씩 활용해 주세요. 스티커는 식용이 아니며, 사용 전후 아이가 스티커를 떼어 삼키지 않도록 보호자가 함께 살펴봐 주세요.</p></details>
+      <details><summary>05. 몇 살부터 읽을 수 있나요?</summary><p>권장 연령은 만 3세 이상입니다. 아이의 이해 정도와 반응에 맞춰 보호자가 함께 읽어 주세요. 모든 아이가 반드시 쓴맛 체험을 해야 하는 것은 아닙니다.</p></details>
+      <details><summary>06. 여러 번 사용해도 쓴맛이 유지되나요?</summary><p>물기와 마찰로 쓴맛이 점차 약해질 수 있습니다. 반복 체험이 필요할 때에는 함께 제공된 쓴맛 스티커를 책의 사용 안내에 따라 활용해 주세요. 강하게 문지르거나 물에 적셔 체험하지 마세요.</p></details>
+      <details><summary>07. 어떻게 보관하고 함께 읽으면 좋을까요?</summary><p>일반 그림책처럼 물기와 습기를 피해 보관하고, 읽기 전 손을 깨끗하게 해 주세요. 먼저 이야기를 읽고 “주인공은 어떤 마음이었을까?”, “우리는 어떻게 해볼까?” 하고 대화해 보세요. 체험 결과나 습관의 변화는 아이마다 다를 수 있습니다.</p></details>
+      <details><summary>08. 제품 정보와 확인 자료는 어디서 보나요?</summary><p>제품별 연령과 주의사항은 책·포장·구매처의 표시를 우선 확인해 주세요. 아래에서 기존 홈페이지의 KOTITI 시험성적서를 크게 보실 수 있습니다. 제품이나 부록에 관한 질문은 하단 문의하기를 이용해 주세요.</p></details>
+    </div>
+    <div class="document-links"><button class="button secondary" type="button" data-document="assets/certificates/kc-certificate.png" data-t="viewTest">KOTITI 시험성적서 보기</button><button class="button secondary" type="button" data-open="contact" data-t="contact">문의하기</button></div>
   </dialog>
-  <script type="module" src="script.js?v=responsive-20261022-1"></script>
+  <dialog id="lab-dialog" class="dialog content-dialog" aria-labelledby="lab-dialog-title"><button class="close-button" type="button" data-close data-t="close">닫기</button><p class="dialog-kicker">BITTER BOOKS / BITTERINK</p><h2 id="lab-dialog-title" data-t="labDialogTitle">이야기에 감각을 더하는 쓴맛 연구소</h2><div class="editorial" data-t="labContent">
+    <p class="section-lead">보고, 만지고, 느끼는 책.<br>인쇄에 감각을 더하면 이야기는 경험이 됩니다.</p><img class="content-banner" src="assets/lab-visual.webp" width="1536" height="1024" alt="그림책 위의 돋보기와 쓴맛 잉크" loading="lazy">
+    <h3>왜 이야기에 ‘쓴맛’을 더했을까요?</h3><p>아무리 좋은 말도 직접 경험하지 않으면 쉽게 잊히곤 합니다. 비터북스는 이야기 속 장면에 쓴맛이라는 감각을 연결해, 아이가 행동의 의미를 느끼고 보호자와 함께 생각할 작은 계기를 만듭니다. 쓴맛은 아이를 놀라게 하거나 혼내기 위한 장치가 아닙니다.</p>
+    <h3>BitterINK는 무엇인가요?</h3><p>건묵이 개발한 쓴맛 인쇄 기술입니다. 영국 Veranova의 쓴맛 원료를 식물성 콩기름 기반 잉크에 결합해 인쇄물에 적용합니다. 비터북스 그림책의 일부 장면과 체험 스티커에서 이 기술을 만날 수 있습니다.</p>
+    <div class="fact-grid"><article><b>특허받은 기술</b><p>대한민국 등록특허 제10-2761689호. 쓴맛 잉크 조성물 및 인쇄 기술을 보호합니다.</p></article><article><b>확인할 수 있는 자료</b><p>기존 홈페이지의 특허증과 KOTITI 어린이제품 공통안전기준 시험성적서를 공개합니다.</p></article></div>
+    <h3>어떤 인쇄에 적용하나요?</h3><ul><li><strong>OFFSET</strong> — 종이 도서와 교육 도구용</li><li><strong>UV</strong> — 플라스틱 등 비흡수 소재용</li><li><strong>GRAVURE</strong> — 필름과 비닐용</li></ul><p>소재와 용도에 맞춘 기술을 개발하고 있습니다. 각 방식의 적용 범위와 제품별 사용 안내는 구분해서 확인해 주세요.</p>
+    <h3>책 속 경험은 이렇게 이어집니다</h3><ol><li><strong>이야기를 읽어요.</strong> 주인공의 행동과 마음을 먼저 만납니다.</li><li><strong>원할 때 가볍게 체험해요.</strong> 만 3세 이상, 보호자와 함께 책의 안내를 따릅니다.</li><li><strong>함께 이야기해요.</strong> 아이가 느낀 점을 듣고 다음 행동을 스스로 생각하도록 돕습니다.</li></ol>
+  </div><div class="document-links"><button class="button secondary" type="button" data-document="assets/certificates/patent.png" data-t="viewPatent">대한민국 특허증 보기</button><button class="button secondary" type="button" data-document="assets/certificates/kc-certificate.png" data-t="viewTest">KOTITI 시험성적서 보기</button><button class="button primary" type="button" data-open="faq" data-t="faqLink">안전·사용 안내 보기 →</button></div></dialog>
+  <dialog id="document-dialog" class="dialog document-dialog" aria-labelledby="document-title"><button class="close-button" type="button" data-close data-t="close">닫기</button><h2 id="document-title" data-t="documentTitle">확인 자료</h2><p data-t="documentHint">이미지를 확대해 원본 자료를 확인하실 수 있습니다.</p><a id="document-download" download data-t="downloadDocument">원본 이미지 저장</a><img id="document-image" alt="선택한 제품 확인 자료"></dialog>
+  <dialog id="contact-dialog" class="dialog contact-dialog" aria-labelledby="contact-title"><button class="close-button" type="button" data-close data-t="close">닫기</button><p class="dialog-kicker">HELLO, BITTER BOOKS</p><h2 id="contact-title" data-t="contactTitle">어떤 이야기를 들려주실 건가요?</h2><p data-t="contactLead">도서·사용 방법·단체 구매·출판 및 교육 제휴를 문의하실 수 있습니다.</p><div class="email-box"><span>bitterbooks@naver.com</span><button class="button secondary" type="button" id="copy-email" data-t="copyEmail">이메일 주소 복사</button></div><form id="contact-form"><label for="contact-category" data-t="contactCategory">문의 유형</label><select id="contact-category"><option value="도서 및 사용 안내" data-t="categoryBook">도서 및 사용 안내</option><option value="단체 구매" data-t="categoryOrder">단체 구매</option><option value="출판·교육 제휴" data-t="categoryPartner">출판·교육 제휴</option><option value="기타 문의" data-t="categoryOther">기타 문의</option></select><label for="contact-message" data-t="contactMessage">문의 내용</label><textarea id="contact-message" rows="5" maxlength="3000" required></textarea><p class="age-note" data-t="contactNote">내용을 작성해 복사한 뒤, 평소 사용하시는 이메일에서 위 주소로 보내주세요. 이 화면에서는 문의가 자동 접수되지 않습니다.</p><button class="button primary" type="submit" data-t="copyInquiry">문의 내용 복사하기</button><p id="copy-status" role="status" aria-live="polite"></p></form></dialog>
+  <script type="module" src="content-v3.js?v=20261022-review1"></script>
 </body>
 </html>
